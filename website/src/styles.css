@@ -1,0 +1,520 @@
+/* =========================================================================
+   DELTROL IMAGE-TO-3D — EXACT HERO COVER PAGE SPECIFICATION
+   Approved Doop Canvas: Deltrol — MagicPath Hero · Desktop 1440
+   ========================================================================= */
+
+:root {
+  --color-ground: #ffffff;
+  --color-paper: #ffffff;
+  --color-brand-deep: #0f4763;
+  --color-brand-mid: #16698a;
+  --color-blue: #38bdf8;
+  --color-ink: #10222d;
+  --color-muted: #5e717b;
+  --color-line: #d5e0e4;
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--font-body);
+  background: var(--color-ground);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* =========================================================================
+   1. TOPLINE UTILITY BAR
+   ========================================================================= */
+.topline {
+  height: 27px;
+  background: var(--color-brand-deep);
+  color: #EAF3F9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.topline b {
+  color: var(--color-blue);
+  font-weight: 700;
+  margin: 0 4px;
+}
+
+/* =========================================================================
+   2. NAVIGATION HEADER (HEIGHT: 80PX)
+   ========================================================================= */
+.head {
+  height: 80px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 64px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-line);
+  position: relative;
+  z-index: 20;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 54px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.nav a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  padding: 28px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: var(--color-brand-deep);
+}
+
+.nav a.active {
+  color: var(--color-brand-deep);
+  font-weight: 600;
+}
+
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-blue);
+}
+
+.head-cta {
+  justify-self: end;
+  background: var(--color-brand-deep);
+  color: #ffffff;
+  padding: 14px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  min-width: 154px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.head-cta:hover {
+  background: #0a3348;
+  transform: translateY(-1px);
+}
+
+.head-cta span {
+  font-size: 13px;
+  margin-left: 8px;
+}
+
+/* =========================================================================
+   3. HERO SECTION (2-COLUMN GRID ~58% / 42%)
+   ========================================================================= */
+.hero {
+  min-height: 680px;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: center;
+  border-bottom: 1px solid var(--color-line);
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.copy {
+  padding: 56px 48px 56px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  color: var(--color-brand-mid);
+  text-transform: uppercase;
+}
+
+.eyebrow:before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  background: var(--color-blue);
+}
+
+h1 {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  letter-spacing: -.053em;
+  line-height: 1.08;
+  font-size: clamp(38px, 4.2vw, 62px);
+  margin: 30px 0 24px;
+  max-width: 680px;
+  color: var(--color-ink);
+}
+
+h1 em {
+  color: var(--color-brand-mid);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.lead {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--color-muted);
+  max-width: 580px;
+  margin-bottom: 34px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  height: 49px;
+  background: var(--color-brand-deep);
+  color: #ffffff;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #0a3348;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 71, 99, 0.2);
+}
+
+.btn-secondary {
+  height: 49px;
+  border: 1px solid var(--color-line);
+  padding: 0 22px;
+  min-width: 210px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-brand-deep);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-brand-mid);
+  background: #f7fafc;
+  color: var(--color-brand-mid);
+}
+
+.btn-secondary span {
+  font-size: 14px;
+}
+
+.micro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 10px;
+  color: var(--color-muted);
+}
+
+.micro span + span {
+  border-left: 1px solid var(--color-line);
+  padding-left: 16px;
+}
+
+/* =========================================================================
+   4. SEAMLESS 3D PRINTER STAGE (USER REQUIREMENT: ZERO OVERLAY, FULL BLEND)
+   ========================================================================= */
+.printer-stage-seamless {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  overflow: visible;
+}
+
+.printer-stage-seamless canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+  cursor: grab;
+}
+
+.printer-stage-seamless canvas:active {
+  cursor: grabbing;
+}
+
+/* Loading status */
+.scene-status {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(16, 34, 45, 0.08);
+  color: var(--color-brand-deep);
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  gap: 10px;
+  padding: 12px 18px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  background: var(--color-blue);
+  border-radius: 50%;
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* =========================================================================
+   5. 3-COLUMN STATS STRIP BELOW HERO
+   ========================================================================= */
+.stats {
+  min-height: 135px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 28px 64px;
+  background: #f2f7fa;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid var(--color-line);
+  padding-left: 48px;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  color: var(--color-brand-mid);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.stat-caption {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+/* =========================================================================
+   6. CONTENT SECTIONS (VẬT LIỆU, CÔNG NGHỆ, THỊ TRƯỜNG, SO SÁNH)
+   ========================================================================= */
+.content-section {
+  padding: 64px;
+  border-bottom: 1px solid var(--color-line);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.section-head {
+  margin-bottom: 36px;
+}
+
+.section-head h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-brand-deep);
+  margin-top: 8px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.info-card {
+  background: #f8fafb;
+  border: 1px solid var(--color-line);
+  padding: 24px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.info-card:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 71, 99, 0.08);
+  border-color: var(--color-blue);
+  transform: translateY(-2px);
+}
+
+.info-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-brand-deep);
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* =========================================================================
+   7. RESPONSIVE MEDIA QUERIES
+   ========================================================================= */
+@media (max-width: 1024px) {
+  .topline,
+  .head,
+  .copy,
+  .stats,
+  .content-section {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .copy {
+    padding-top: 48px;
+    padding-bottom: 24px;
+  }
+  .printer-stage-seamless {
+    height: 480px;
+  }
+  .stats {
+    height: auto;
+    gap: 24px;
+  }
+  .stat-item + .stat-item {
+    padding-left: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topline {
+    padding: 0 16px;
+    font-size: 8px;
+  }
+  .topline span:last-child {
+    display: none;
+  }
+  .head {
+    padding: 0 16px;
+    grid-template-columns: 1fr auto;
+  }
+  .nav {
+    display: none;
+  }
+  .copy {
+    padding: 36px 16px;
+  }
+  h1 {
+    font-size: 38px;
+  }
+  .printer-stage-seamless {
+    height: 380px;
+  }
+  .stats {
+    grid-template-columns: 1fr;
+    padding: 28px 16px;
+  }
+  .stat-item + .stat-item {
+    border-left: none;
+    border-top: 1px solid var(--color-line);
+    padding-left: 0;
+    padding-top: 20px;
+  }
+  .content-section {
+    padding: 36px 16px;
+  }
+}

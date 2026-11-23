@@ -1,0 +1,351 @@
+<!doctype html><html lang="vi"><head><link rel="stylesheet" data-doop-webfonts href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box;margin:0}body{font-family:var(--font-body),sans-serif;background:var(--color-ground);color:var(--color-ink)}a{text-decoration:none;color:inherit}.topline{height:27px;background:var(--color-brand-deep);color:#EAF3F9;display:flex;align-items:center;justify-content:space-between;padding:0 64px;font-size:9px;font-weight:700;letter-spacing:.17em}.topline b{color:var(--color-blue)}.head{height:80px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;padding:0 64px;border-bottom:1px solid var(--color-line)}.logo{display:flex;align-items:center}.logo img{width:216px;height:67px;object-fit:contain;mix-blend-mode:multiply}.nav{display:flex;gap:30px;align-items:center;justify-content:center;white-space:nowrap}.nav > :first-child{border-bottom:2px solid var(--color-blue)}.head-cta{justify-self:end;background:var(--color-brand-deep);color:white;padding:16px 20px;font-size:11px;font-weight:700;min-width:167px;display:flex;justify-content:space-between}.hero{height:713px;display:grid;grid-template-columns:58.33% 41.67%;border-bottom:1px solid var(--color-line)}.copy{padding:0 63px 0 64px;display:flex;flex-direction:column;justify-content:center}.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.19em;color:var(--color-brand-mid)}.eyebrow:before{content:"";display:block;width:34px;height:2px;background:var(--color-blue)}h1{font-family:var(--font-display),serif;font-weight:400;letter-spacing:-.053em;line-height:1.08;font-size:64px;margin:33px 0 27px;max-width:725px}h1 em{color:var(--color-brand-mid);font-style:normal}.lead{font-size:15px;line-height:1.85;color:var(--color-muted);max-width:605px}.buttons{display:flex;gap:13px;margin-top:36px;align-items:center}.buttons > doop-use{display:inline-block}.btn-secondary{height:49px;border:1px solid var(--color-line);padding:0 20px;min-width:214px;display:inline-flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--color-brand-deep)}.micro{margin-top:38px;display:flex;align-items:center;gap:16px;font-size:10px;color:var(--color-muted)}.micro span+span{border-left:1px solid var(--color-line);padding-left:17px}.visual{height:615px;margin:49px 0;background:radial-gradient(circle at 71% 22%,#f9fcff,transparent 42%),linear-gradient(145deg,#edf4f8,#c9dae5);position:relative;display:flex;justify-content:center;align-items:center;overflow:hidden}.visual:before{content:"";position:absolute;inset:20px;border:1px solid #ffffffdc}.stats{height:135px;display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:20px 64px;background:#f2f7fa}.stats doop-use{display:block;width:100%}.stats doop-use:first-child>div{border-left:none!important;padding-left:0!important}@media(max-width:700px){.head{grid-template-columns:1fr auto;padding:0 22px}.nav{display:none}.hero{height:auto;display:flex;flex-direction:column}.copy{padding:55px 25px}.visual{margin:0;height:440px}.stats{height:auto;display:block}.topline{padding:0 23px}.topline span:last-child{display:none}h1{font-size:44px}.micro{flex-wrap:wrap}}
+
+/* =========================================================================
+   DELTROL 3D CAMERA MOTION & ACTIVE 3D PRINTING STAGE (AUTHENTIC COREXY)
+   ========================================================================= */
+.visual.printer-demo{background:radial-gradient(circle at 62% 48%,#ffffff 0%,#e4eff5 55%,#d8e7f0 100%);isolation:isolate;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;padding:12px}
+.visual.printer-demo:before{display:none}
+
+.showcase-stage{position:relative;width:100%;height:100%;background:transparent;box-shadow:none;overflow:hidden;border:none;filter:drop-shadow(0 24px 38px rgba(15,35,48,0.22))}
+
+.cinematic-viewport{position:absolute;inset:0;perspective:1400px;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center}
+
+/* 3D Camera Gimbal Rig: Một khung hình duy nhất, zoom mượt mà xuyên buồng in không cắt cảnh */
+.camera-gimbal-3d{position:relative;height:100%;aspect-ratio:16/9;flex-shrink:0;transform-style:preserve-3d;transform-origin:55.81% 44.01%;will-change:transform;transition:transform 1.8s cubic-bezier(0.25, 1.0, 0.3, 1.0)}
+
+.printer-master-scene{width:100%;height:100%;object-fit:cover;object-position:center;display:block;user-select:none;pointer-events:none}
+
+/* Buồng in gia nhiệt & ánh sáng LED buồng phản chiếu */
+.chamber-lighting-depth{position:absolute;inset:0;background:radial-gradient(circle at 55.81% 44.01%,rgba(255,190,70,0.12) 0%,rgba(255,140,20,0.04) 30%,transparent 65%);pointer-events:none;mix-blend-mode:screen;opacity:0.85;animation:chamberPulse 4s ease-in-out infinite alternate}
+@keyframes chamberPulse{0%{opacity:0.65}100%{opacity:1.0}}
+
+/* =========================================================================
+   AUTHENTIC 3D PRINTING SIMULATION: CNC TOOLPATH, MOLTEN BEAD & ACTIVE FORMING
+   ========================================================================= */
+.active-print-rig{position:absolute;inset:0;pointer-events:none;z-index:4}
+.extrusion-toolpath-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* Đế liên kết lớp dưới đang bồi đắp */
+.bead-substrate{fill:none;stroke:rgba(25,30,36,0.9);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Dải nhựa PA-CF nóng chảy 245°C bồi đắp theo quỹ đạo toolpath CNC thực tế */
+.bead-molten-active{fill:none;stroke:url(#coolingFilament);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:118;stroke-dashoffset:118;animation:drawToolpath 5.4s cubic-bezier(0.4,0,0.2,1) infinite;filter:drop-shadow(0 0 1.5px rgba(255,120,20,0.75))}
+
+@keyframes drawToolpath{
+  0%{stroke-dashoffset:118;opacity:1}
+  25.5%{stroke-dashoffset:88}
+  28.2%{stroke-dashoffset:84.8}
+  52.1%{stroke-dashoffset:56.8}
+  54.7%{stroke-dashoffset:53.7}
+  76.9%{stroke-dashoffset:27.7}
+  79.6%{stroke-dashoffset:24.5}
+  94%{stroke-dashoffset:0;opacity:1}
+  98%{stroke-dashoffset:0;opacity:0.95}
+  100%{stroke-dashoffset:118;opacity:0}
+}
+
+/* Cụm đầu phun E2 di chuyển thực tế theo G-code 250 mm/s */
+.active-nozzle-carriage{position:absolute;left:55.81%;top:44.01%;pointer-events:none;z-index:5;will-change:transform;animation:corexyToolpath 5.4s cubic-bezier(0.4,0,0.2,1) infinite}
+
+@keyframes corexyToolpath{
+  0%{transform:translate(-12.1px,0px)}
+  25.5%{transform:translate(17.9px,0px)}
+  28.2%{transform:translate(17.9px,2.0px)}
+  52.1%{transform:translate(-10.1px,2.0px)}
+  54.7%{transform:translate(-10.1px,3.7px)}
+  76.9%{transform:translate(15.9px,3.7px)}
+  79.6%{transform:translate(15.9px,5.3px)}
+  94%{transform:translate(-8.1px,5.3px)}
+  98%{transform:translate(-12.1px,0px)}
+  100%{transform:translate(-12.1px,0px)}
+}
+
+/* Điểm phát nhiệt & dòng chảy nóng chảy 245.2°C tại vòi đồng E2 */
+.nozzle-thermal-glow{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,235,120,1) 0%,rgba(255,120,20,0.85) 35%,rgba(255,40,0,0.35) 65%,transparent 85%);filter:drop-shadow(0 0 5px rgba(255,130,0,0.9));animation:thermalPulse 0.35s ease-in-out infinite alternate}
+@keyframes thermalPulse{
+  0%{transform:translate(-50%,-50%) scale(0.9);opacity:0.85}
+  100%{transform:translate(-50%,-50%) scale(1.25);opacity:1.0;filter:drop-shadow(0 0 7px rgba(255,140,0,1))}
+}
+
+.nozzle-meniscus-dot{position:absolute;left:0;top:0;width:3.5px;height:3.5px;border-radius:50%;transform:translate(-50%,-50%);background:#ffffff;box-shadow:0 0 3px #ffbb00,0 0 5px #ff5500}
+
+/* Vòng ngắm tiêu cự khi ống kính tiếp cận cụm vòi phun */
+.focus-reticle{position:absolute;left:55.81%;top:44.01%;width:58px;height:58px;border:1px solid rgba(56,189,248,0.45);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:6;opacity:0;transition:opacity .6s ease}
+.focus-reticle::before{content:"";position:absolute;inset:-4px;border:1px dashed rgba(56,189,248,0.3);border-radius:50%;animation:reticleSpin 12s linear infinite}
+@keyframes reticleSpin{to{transform:rotate(360deg)}}
+
+
+.printer-overlay-top, .printer-overlay-bottom, .printer-progress, .focus-reticle { display: none !important; }
+
+/* Top Bar: Director Angle Switcher */
+.printer-overlay-top{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;gap:8px;z-index:10}
+.angle-selector{display:flex;gap:4px;background:rgba(10,18,24,0.9);padding:3px;border-radius:24px;border:1px solid rgba(255,255,255,0.14);backdrop-filter:blur(8px)}
+.angle-btn{background:transparent;color:#9bc0d8;border:none;padding:6px 12px;font:700 9px var(--font-body);letter-spacing:0.06em;border-radius:18px;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.angle-btn:hover{color:white;background:rgba(255,255,255,0.08)}
+.angle-btn.active{background:var(--color-blue);color:white;box-shadow:0 2px 8px rgba(30,120,188,0.45)}
+
+.printer-live{font:700 9px var(--font-body);letter-spacing:.1em;color:#7ec3eb;display:flex;align-items:center;gap:7px;white-space:nowrap;background:rgba(10,18,24,0.9);padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.12)}
+.printer-live-dot{height:7px;width:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.25);animation:printer-pulse 1.8s ease-in-out infinite}
+@keyframes printer-pulse{50%{opacity:.4;box-shadow:0 0 0 7px rgba(34,197,94,0.1)}}
+
+/* Bottom HUD Telemetry */
+.printer-overlay-bottom{position:absolute;bottom:20px;left:20px;right:20px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;z-index:10;pointer-events:none}
+.printer-meta{pointer-events:auto}
+.hud-tag{display:inline-block;padding:3px 7px;background:rgba(30,120,188,0.25);border:1px solid rgba(111,194,244,0.3);color:#8ad0f8;border-radius:4px;font:700 8px monospace;letter-spacing:.1em;margin-bottom:6px}
+.printer-meta-title{font:400 20px var(--font-display),serif;letter-spacing:-.04em;color:#ffffff;line-height:1.15;text-shadow:0 2px 6px rgba(0,0,0,0.8)}
+.printer-meta-title em{font-style:italic;color:#7ec3eb}
+.printer-meta-caption{font:700 9px var(--font-body);letter-spacing:.11em;color:#a8cce4;margin-top:6px;text-shadow:0 1px 4px rgba(0,0,0,0.7)}
+
+.hud-telemetry{background:rgba(10,18,24,0.92);border:1px solid rgba(111,194,244,0.3);border-radius:8px;padding:8px 12px;backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:3px;text-align:right;min-width:195px;pointer-events:auto}
+.tele-row{font:700 9px monospace;letter-spacing:.05em;color:#9ac2db}
+.tele-row b{color:#ffffff}
+.tele-row span.val{color:#38bdf8}
+.tele-row span.temp{color:#f59e0b}
+.gcode-stream{font:700 8px monospace;color:#4ade80;background:rgba(0,0,0,0.4);padding:2px 5px;border-radius:3px;margin-top:2px;letter-spacing:0.04em;text-align:left;overflow:hidden;white-space:nowrap}
+
+.printer-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.12);z-index:10}
+.printer-progress>div{height:100%;width:53%;background:var(--color-blue);transition:width .3s linear}
+
+/* --- CAMERA PRESET MODES (CHUẨN 3D MOTION SKILL) --- */
+/* Mode 1: Fly-in - Zoom mượt mà từ ngoài vào nozzle (13.5s Loop) */
+.showcase-stage.mode-flyin .camera-gimbal-3d{
+  animation: continuous3DCamera 13.5s cubic-bezier(0.38, 0.0, 0.18, 1.0) infinite;
+}
+@keyframes continuous3DCamera{
+  0%{transform:scale(1.0) rotateY(-2.0deg) rotateX(1.2deg)}
+  22%{transform:scale(1.0) rotateY(-2.0deg) rotateX(1.2deg)}
+  48%{transform:scale(1.90) rotateY(-0.8deg) rotateX(0.5deg)}
+  65%{transform:scale(3.55) rotateY(0deg) rotateX(0deg)}
+  88%{transform:scale(3.55) rotateY(0.4deg) rotateX(-0.3deg)}
+  100%{transform:scale(1.0) rotateY(-2.0deg) rotateX(1.2deg)}
+}
+.showcase-stage.mode-flyin .focus-reticle{
+  animation: reticleFade 13.5s ease-in-out infinite;
+}
+@keyframes reticleFade{
+  0%,48%{opacity:0}
+  62%,88%{opacity:0.55}
+  100%{opacity:0}
+}
+
+/* Mode 2: Toàn cảnh bên ngoài */
+.showcase-stage.mode-exterior .camera-gimbal-3d{
+  transform:scale(1.0) rotateY(-2.0deg) rotateX(1.2deg);
+  animation:ambientSway 10s ease-in-out infinite alternate;
+}
+@keyframes ambientSway{
+  0%{transform:scale(1.0) rotateY(-2.2deg) rotateX(1.3deg)}
+  100%{transform:scale(1.0) rotateY(-1.6deg) rotateX(0.9deg)}
+}
+
+/* Mode 3: Buồng in kính */
+.showcase-stage.mode-chamber .camera-gimbal-3d{
+  transform:scale(1.90) rotateY(-0.8deg) rotateX(0.5deg);
+  animation:chamberSway 8s ease-in-out infinite alternate;
+}
+@keyframes chamberSway{
+  0%{transform:scale(1.90) rotateY(-1.0deg) rotateX(0.6deg)}
+  100%{transform:scale(1.90) rotateY(-0.5deg) rotateX(0.3deg)}
+}
+
+/* Mode 4: Cận cảnh vòi phun E2 */
+.showcase-stage.mode-nozzle .camera-gimbal-3d{
+  transform:scale(3.55) rotateY(0deg) rotateX(0deg);
+  animation:nozzleFocusSway 6s ease-in-out infinite alternate;
+}
+@keyframes nozzleFocusSway{
+  0%{transform:scale(3.55) rotateY(-0.4deg) rotateX(0.2deg)}
+  100%{transform:scale(3.55) rotateY(0.4deg) rotateX(-0.2deg)}
+}
+.showcase-stage.mode-nozzle .focus-reticle{opacity:0.55}
+
+@media(max-width:700px){
+  .visual.printer-demo{padding:12px}
+  .printer-overlay-top{top:12px;left:12px;right:12px}
+  .printer-overlay-bottom{bottom:14px;left:12px;right:12px}
+  .printer-meta-title{font-size:17px}
+  .angle-btn{padding:5px 8px;font-size:8px}
+}
+</style></head><body><div class="topline"><span>DELTROL · 3D PRINTING SOLUTIONS</span><span>KHÁM PHÁ <b>·</b> SO SÁNH <b>·</b> LỰA CHỌN</span></div><header class="head"><a class="logo" href="#"><img src="https://doop.design/a/PageaV6t5p.webp" alt="Deltrol Controls"></a><nav class="nav"><doop-use component="Deltrol Nav Link" id="m4s7xd" link="#materials"></doop-use><doop-use component="Deltrol Nav Link" id="lv7qiy" label="Công nghệ" link="#technology"></doop-use><doop-use component="Deltrol Nav Link" id="57bka5" label="Thị trường" link="#market"></doop-use><doop-use component="Deltrol Nav Link" id="9ls8y6" label="Lựa chọn" link="#compare"></doop-use></nav><a class="head-cta" href="#compare">So sánh máy <span>↗</span></a></header><main><section class="hero"><div class="copy"><div class="eyebrow">GIẢI PHÁP LỰA CHỌN MÁY IN 3D</div><h1>Lựa chọn <em>máy in 3D</em><br>cho nhà máy của bạn.</h1><p class="lead">Khám phá các công nghệ in 3D, vật liệu phổ biến và những mẫu máy dành cho sản xuất, chế tạo mẫu và đồ gá trong nhà máy. So sánh thông số, chi phí và khả năng hỗ trợ để lựa chọn thiết bị phù hợp với nhu cầu thực tế.</p><div class="buttons"><doop-use component="Action Button" id="uece8h" label="Khám phá giải pháp"></doop-use><a href="#compare" class="btn-secondary">So sánh các mẫu máy <span>→</span></a></div><div class="micro"><span>04 nhóm nội dung</span><span>Thông tin có dẫn nguồn</span><span>Cập nhật 19/11/2026</span></div></div><div class="visual printer-demo" id="printer-demo" data-doop-id="deltrol-3d-printer">
+  <div class="showcase-stage mode-flyin" id="printer-stage" aria-label="Mô hình 3D thực tế máy in Deltrol: Cụm đầu đùn E1/E2 di chuyển đùn nhựa bồi đắp tạo sản phẩm 3D trong buồng kín">
+    <div class="cinematic-viewport">
+      <div class="camera-gimbal-3d" id="camera-gimbal">
+        <img class="printer-master-scene" src="https://doop.design/a/pGL9LC_97X.jpg" alt="Toàn cảnh máy in 3D công nghiệp Deltrol CoreXY buồng kín đang in 3D đồ gá PA-CF 4K">
+        
+        <!-- HỆ THỐNG ĐÙN NHỰA NÓNG CHẢY BỒI ĐẮP ĐỒ GÁ PA-CF THEO THỜI GIAN THỰC -->
+        <div class="active-print-rig">
+          <svg class="extrusion-toolpath-svg" viewBox="0 0 1000 562.5" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="coolingFilament" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#14181c" />
+                <stop offset="85%" stop-color="#242c34" />
+                <stop offset="98%" stop-color="#ff7b00" />
+                <stop offset="100%" stop-color="#ffe680" />
+              </linearGradient>
+            </defs>
+            <!-- Đế liên kết lớp dưới đang bồi đắp -->
+            <path class="bead-substrate" d="M 546 247.5 L 576 247.5 A 1.2 1.2 0 0 1 576 249.5 L 548 249.5 A 1.2 1.2 0 0 1 548 251.2 L 574 251.2 A 1.2 1.2 0 0 1 574 252.8 L 550 252.8" />
+            <!-- Dải nhựa PA-CF nóng chảy 245°C bồi đắp theo quỹ đạo toolpath CNC thực tế -->
+            <path class="bead-molten-active" d="M 546 247.5 L 576 247.5 A 1.2 1.2 0 0 1 576 249.5 L 548 249.5 A 1.2 1.2 0 0 1 548 251.2 L 574 251.2 A 1.2 1.2 0 0 1 574 252.8 L 550 252.8" />
+          </svg>
+
+          <!-- Điểm phát nhiệt & dòng chảy nóng chảy tại đầu phun đồng E2 -->
+          <div class="active-nozzle-carriage" id="active-nozzle" title="Nozzle E2 245.2°C đùn nhựa PA-CF nóng chảy">
+            <div class="nozzle-thermal-glow"></div>
+            <div class="nozzle-meniscus-dot"></div>
+          </div>
+        </div>
+
+        <!-- Vòng ngắm tiêu cự khi ống kính tiếp cận cụm vòi phun E2 -->
+        <div class="focus-reticle" id="focus-reticle"></div>
+
+        <div class="chamber-lighting-depth"></div>
+      </div>
+    </div>
+    
+    <!-- Top Bar: Director Angle Switcher -->
+    <div class="printer-overlay-top">
+      <div class="angle-selector" role="tablist" aria-label="Chọn góc máy in">
+        <button type="button" class="angle-btn active" id="btn-flyin" data-mode="flyin">🎬 XUYÊN VÀO NOZZLE</button>
+        <button type="button" class="angle-btn" id="btn-ext" data-mode="exterior">🎥 TOÀN CẢNH MÁY</button>
+        <button type="button" class="angle-btn" id="btn-chamber" data-mode="chamber">🔍 BUỒNG IN KÍNH</button>
+        <button type="button" class="angle-btn" id="btn-nozzle" data-mode="nozzle">🔥 CẬN CẢNH NOZZLE</button>
+        <button type="button" class="angle-btn active" id="btn-autoloop" title="Tự động lặp lại góc quay">LOOP 🔄</button>
+      </div>
+      <div class="printer-live"><span class="printer-live-dot"></span> 3D REALTIME · RUNNING</div>
+    </div>
+    
+    <!-- Bottom Bar: Dynamic HUD Telemetry & Live G-code Stream -->
+    <div class="printer-overlay-bottom">
+      <div class="printer-meta">
+        <span class="hud-tag" id="hud-mode-tag">CAM: 3D DOLLY-IN ZOOM (13.5S LOOP)</span>
+        <div class="printer-meta-title" id="hud-title">Đang in 3D <em>tạo sản phẩm cơ khí.</em></div>
+        <div class="printer-meta-caption" id="hud-caption">01 — TIẾP CẬN CỖ MÁY IN COREXY BUỒNG KÍN TỪ BÊN NGOÀI XUYÊN VÀO NOZZLE</div>
+      </div>
+      <div class="hud-telemetry" id="hud-telemetry">
+        <div class="tele-row">VẬT LIỆU: <span class="val" id="tele-mat">PA-CF (SỢI CARBON)</span></div>
+        <div class="tele-row">NOZZLE: <span class="temp" id="tele-nozzle">245.2°C</span> · BED: <span class="val" id="tele-bed">65.0°C</span></div>
+        <div class="tele-row">TIẾN TRÌNH: <span class="val" id="tele-layer">LỚP 24 / 45 (53%) · Z: 4.80mm</span></div>
+        <div class="gcode-stream" id="gcode-line">> G1 X155.67 Y83.88 E14.720 F7200</div>
+      </div>
+    </div>
+    <div class="printer-progress"><div id="printer-progress-fill"></div></div>
+  </div>
+</div></section><section class="stats"><doop-use component="Deltrol Stat" id="m4fadm"></doop-use><doop-use component="Deltrol Stat" id="z7yhko" caption="Đùn sợi nhựa nóng chảy" text="CÔNG NGHỆ ĐANG TÌM HIỂU" text-2="FDM / FFF"></doop-use><doop-use component="Deltrol Stat" id="ecxarg" caption="Cần cập nhật theo ngày mua hàng" text="TỶ GIÁ QUY ĐỔI THAM KHẢO" text-2="1 USD ≈ 25.900 ₫"></doop-use></section></main><script>
+(function() {
+  const stage = document.getElementById('printer-stage');
+  const btnFlyin = document.getElementById('btn-flyin');
+  const btnExt = document.getElementById('btn-ext');
+  const btnChamber = document.getElementById('btn-chamber');
+  const btnNozzle = document.getElementById('btn-nozzle');
+  const btnLoop = document.getElementById('btn-autoloop');
+  
+  const tag = document.getElementById('hud-mode-tag');
+  const title = document.getElementById('hud-title');
+  const caption = document.getElementById('hud-caption');
+  const teleMat = document.getElementById('tele-mat');
+  const teleNozzle = document.getElementById('tele-nozzle');
+  const teleLayer = document.getElementById('tele-layer');
+  const gcodeEl = document.getElementById('gcode-line');
+  const pFill = document.getElementById('printer-progress-fill');
+
+  if (!stage) return;
+
+  const gcodeSamples = [
+    '> G1 X155.67 Y83.88 E14.720 F7200',
+    '> G1 X158.40 Y85.10 E14.895 F7200',
+    '> G1 X162.15 Y88.75 E15.072 F7200',
+    '> G1 X165.80 Y94.20 E15.250 F7200',
+    '> G1 X163.20 Y101.5 E15.428 F7200',
+    '> G1 X157.90 Y107.8 E15.605 F7200',
+    '> G1 X151.30 Y112.4 E15.782 F7200',
+    '> G1 X145.80 Y110.1 E15.960 F7200',
+    '> G1 X142.10 Y104.5 E16.138 F7200'
+  ];
+  let gcodeIdx = 0;
+  setInterval(() => {
+    if (gcodeEl) {
+      gcodeIdx = (gcodeIdx + 1) % gcodeSamples.length;
+      gcodeEl.textContent = gcodeSamples[gcodeIdx];
+    }
+    if (teleNozzle) {
+      const tempVar = (245.0 + (Math.sin(Date.now() * 0.003) * 0.35)).toFixed(1);
+      teleNozzle.textContent = tempVar + '°C';
+    }
+  }, 450);
+
+  const modes = {
+    flyin: {
+      btn: btnFlyin,
+      cls: 'mode-flyin',
+      tag: 'CAM: 3D DOLLY-IN ZOOM (13.5S LOOP)',
+      title: 'Hành trình ống kính <em>từ ngoài vào trong.</em>',
+      caption: '01 — TIẾP CẬN CỖ MÁY IN COREXY BUỒNG KÍN TỪ BÊN NGOÀI XUYÊN VÀO NOZZLE',
+      mat: 'PA-CF (SỢI CARBON)',
+      layer: 'LỚP 24 / 45 (53%) · Z: 4.80mm',
+      pct: 53
+    },
+    exterior: {
+      btn: btnExt,
+      cls: 'mode-exterior',
+      tag: 'CAM: TOÀN CẢNH MÁY IN VẬN HÀNH',
+      title: 'Cỗ máy Deltrol CoreXY <em>buồng kín.</em>',
+      caption: '02 — GÓC NHÌN TOÀN CẢNH VỎ KIM LOẠI NGUYÊN KHỐI & CỬA KÍNH TINT',
+      mat: 'PA-CF / PETG-CF',
+      layer: 'TỐC ĐỘ: 250 MM/S · COREXY',
+      pct: 35
+    },
+    chamber: {
+      btn: btnChamber,
+      cls: 'mode-chamber',
+      tag: 'CAM: BUỒNG IN KÍNH GIA NHIỆT',
+      title: 'Không gian in <em>gia nhiệt 70°C.</em>',
+      caption: '03 — BÀN IN PEI VÀNG ĐỒNG & HỆ TRỤC TRƯỢT BI TUYẾN TÍNH',
+      mat: 'DUAL EXTRUDER E1/E2',
+      layer: 'BÀN IN: 65°C PEI · GIA NHIỆT',
+      pct: 46
+    },
+    nozzle: {
+      btn: btnNozzle,
+      cls: 'mode-nozzle',
+      tag: 'CAM: CẬN CẢNH NOZZLE ĐÙN NHỰA',
+      title: 'Đang in 3D <em>tạo sản phẩm cơ khí.</em>',
+      caption: '04 — ĐẦU PHUN ĐỒNG DI CHUYỂN ĐÙN NHỰA NÓNG CHẢY BỒI ĐẮP ĐỒ GÁ PA-CF',
+      mat: 'PA-CF + TREE SUPPORT',
+      layer: 'LỚP 24 / 45 (53%) · Z: 4.80mm',
+      pct: 53
+    }
+  };
+
+  function setMode(key) {
+    Object.values(modes).forEach(m => {
+      stage.classList.remove(m.cls);
+      m.btn.classList.remove('active');
+    });
+    const cur = modes[key];
+    stage.classList.add(cur.cls);
+    cur.btn.classList.add('active');
+    if (tag) tag.textContent = cur.tag;
+    if (title) title.innerHTML = cur.title;
+    if (caption) caption.textContent = cur.caption;
+    if (teleMat) teleMat.textContent = cur.mat;
+    if (teleLayer) teleLayer.textContent = cur.layer;
+    if (pFill) pFill.style.width = cur.pct + '%';
+  }
+
+  btnFlyin.addEventListener('click', () => { setMode('flyin'); btnLoop.classList.add('active'); });
+  btnExt.addEventListener('click', () => { setMode('exterior'); btnLoop.classList.remove('active'); });
+  btnChamber.addEventListener('click', () => { setMode('chamber'); btnLoop.classList.remove('active'); });
+  btnNozzle.addEventListener('click', () => { setMode('nozzle'); btnLoop.classList.remove('active'); });
+
+  btnLoop.addEventListener('click', () => {
+    if (stage.classList.contains('mode-flyin')) {
+      btnLoop.classList.remove('active');
+      setMode('nozzle');
+    } else {
+      btnLoop.classList.add('active');
+      setMode('flyin');
+    }
+  });
+})();
+</script></body></html>

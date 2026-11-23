@@ -1,0 +1,109 @@
+{
+  "task_id": "TASK-004",
+  "parent_task_id": "TASK-003-REV2",
+  "stage_id": "STAGE-004",
+  "created_at": "2026-11-19T19:48:00+07:00",
+  "generation_tool": "image-generator subagent (Google AI ecosystem / Imagen 3)",
+  "anchor_asset": "assets/generated/antigravity/p2s_reference_front_right_3_4_rev2.jpg",
+  "doop_canvas_id": "k9kwTJyu-Z",
+  "doop_canvas_url": "https://doop.design/c/k9kwTJyu-Z",
+  "views": [
+    {
+      "view_key": "front_right_3_4",
+      "view_name": "AG · P2S Multiview · Front-Right 3/4",
+      "role": "Anchor perspective reference",
+      "filename": "p2s_multiview_front_right_3_4.jpg",
+      "local_path": "assets/generated/antigravity/multiview/p2s_multiview_front_right_3_4.jpg",
+      "dimensions": { "width": 1200, "height": 896 },
+      "format": "JPEG (RGB)",
+      "filesize_bytes": 529080,
+      "doop_frame_id": "_yPOWA-Zs3",
+      "doop_frame_url": "https://doop.design/c/k9kwTJyu-Z?frame=_yPOWA-Zs3",
+      "doop_asset_url": "https://doop.design/a/MoIDEyEEJw.jpg",
+      "inferred_geometry": "Chamber depth and internal stepper motor housings."
+    },
+    {
+      "view_key": "front",
+      "view_name": "AG · P2S Multiview · Front",
+      "role": "Orthographic front elevation",
+      "filename": "p2s_multiview_front.jpg",
+      "local_path": "assets/generated/antigravity/multiview/p2s_multiview_front.jpg",
+      "dimensions": { "width": 1200, "height": 896 },
+      "format": "JPEG (RGB)",
+      "filesize_bytes": 561967,
+      "doop_frame_id": "lLZkMDNIWc",
+      "doop_frame_url": "https://doop.design/c/k9kwTJyu-Z?frame=lLZkMDNIWc",
+      "doop_asset_url": "https://doop.design/a/FCMCMs7TJ4.jpg",
+      "inferred_geometry": "Exact vertical door hinge location on left post and Z-leadscrew center alignment."
+    },
+    {
+      "view_key": "right",
+      "view_name": "AG · P2S Multiview · Right",
+      "role": "Orthographic right elevation",
+      "filename": "p2s_multiview_right.jpg",
+      "local_path": "assets/generated/antigravity/multiview/p2s_multiview_right.jpg",
+      "dimensions": { "width": 1200, "height": 896 },
+      "format": "JPEG (RGB)",
+      "filesize_bytes": 630519,
+      "doop_frame_id": "t4SLLetEC4",
+      "doop_frame_url": "https://doop.design/c/k9kwTJyu-Z?frame=t4SLLetEC4",
+      "doop_asset_url": "https://doop.design/a/_d_7-h-lMo.jpg",
+      "inferred_geometry": "Internal cable drag chain curvature radius and right-side stepper bracket offset."
+    },
+    {
+      "view_key": "left",
+      "view_name": "AG · P2S Multiview · Left",
+      "role": "Orthographic left elevation",
+      "filename": "p2s_multiview_left.jpg",
+      "local_path": "assets/generated/antigravity/multiview/p2s_multiview_left.jpg",
+      "dimensions": { "width": 1200, "height": 896 },
+      "format": "JPEG (RGB)",
+      "filesize_bytes": 686251,
+      "doop_frame_id": "CC7HqrMnpI",
+      "doop_frame_url": "https://doop.design/c/k9kwTJyu-Z?frame=CC7HqrMnpI",
+      "doop_asset_url": "https://doop.design/a/1GgkmrTU1U.jpg",
+      "inferred_geometry": "Touchscreen forward tilt angle (~15 degrees) and left Z-rod mounting points."
+    },
+    {
+      "view_key": "rear",
+      "view_name": "AG · P2S Multiview · Rear",
+      "role": "Orthographic rear elevation",
+      "filename": "p2s_multiview_rear.jpg",
+      "local_path": "assets/generated/antigravity/multiview/p2s_multiview_rear.jpg",
+      "dimensions": { "width": 1200, "height": 896 },
+      "format": "JPEG (RGB)",
+      "filesize_bytes": 681013,
+      "doop_frame_id": "hwQHgBPBl2",
+      "doop_frame_url": "https://doop.design/c/k9kwTJyu-Z?frame=hwQHgBPBl2",
+      "doop_asset_url": "https://doop.design/a/SinEGx2zG1.jpg",
+      "inferred_geometry": "Hexagonal fan exhaust grill pitch, rear panel screw count, and PTFE grommet diameter."
+    },
+    {
+      "view_key": "top",
+      "view_name": "AG · P2S Multiview · Top",
+      "role": "Orthographic top plan view",
+      "filename": "p2s_multiview_top.jpg",
+      "local_path": "assets/generated/antigravity/multiview/p2s_multiview_top.jpg",
+      "dimensions": { "width": 1200, "height": 896 },
+      "format": "JPEG (RGB)",
+      "filesize_bytes": 690213,
+      "doop_frame_id": "63FC5fpX7n",
+      "doop_frame_url": "https://doop.design/c/k9kwTJyu-Z?frame=63FC5fpX7n",
+      "doop_asset_url": "https://doop.design/a/Hw5vXOn4CO.jpg",
+      "inferred_geometry": "Toolhead carriage top screw patterns and exact idler pulley bearing diameters."
+    }
+  ],
+  "cross_view_consistency": {
+    "chassis_material": "Bead-blasted matte metallic silver/gray anodized aluminum with rounded vertical corner pillars.",
+    "front_door": "Closed dark-tinted tempered glass door with black perimeter bezel and right vertical flush handle.",
+    "top_lid": "Clear flat tempered glass top lid.",
+    "touchscreen": "Upper-left corner integrated screen with dark bezel and abstract icon UI.",
+    "build_bed": "Solid textured black spring steel PEI magnetic build plate with zero text, zero labels, and clean edges.",
+    "gantry_kinematics": "CoreXY layout with dual cylindrical steel linear guide rods, GT2 rubber belts, and flexible plastic cable drag chain.",
+    "power_connectors": "Lower right side rocker power switch and IEC C14 power inlet socket consistent across right and rear elevations."
+  },
+  "limitations": [
+    "AI-generated photorealistic reference set for 3D modeling and texturing; does not replace mechanical CAD manufacturing blueprints.",
+    "Internal screw threading and wire bundle gauges are visually plausible approximations."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "workflow_id": "DELTROL-IMAGE-TO-3D-PRODUCTION",
+  "version": 2,
+  "stages": [
+    {
+      "stage_id": "STAGE-003",
+      "name": "REAL_PRODUCT_VISUAL",
+      "owner": "antigravity",
+      "reviewer": "codex",
+      "max_attempts": 3,
+      "next_stage": "STAGE-004"
+    },
+    {
+      "stage_id": "STAGE-004",
+      "name": "MULTIVIEW_REFERENCE",
+      "owner": "antigravity",
+      "reviewer": "codex",
+      "max_attempts": 3,
+      "next_stage": "STAGE-005"
+    },
+    {
+      "stage_id": "STAGE-005",
+      "name": "IMAGE_TO_3D_PREPARATION",
+      "owner": "codex",
+      "next_stage": "STAGE-006"
+    },
+    {
+      "stage_id": "STAGE-006",
+      "name": "GLB_BUILD_AND_OPTIMIZATION",
+      "owner": "codex",
+      "next_stage": "STAGE-007"
+    },
+    {
+      "stage_id": "STAGE-007",
+      "name": "WEB_3D_VIEWER",
+      "owner": "codex",
+      "reviewer": "antigravity",
+      "next_stage": "STAGE-008"
+    },
+    {
+      "stage_id": "STAGE-008",
+      "name": "PRINTER_ANIMATION",
+      "owner": "codex",
+      "reviewer": "antigravity",
+      "next_stage": "STAGE-009"
+    },
+    {
+      "stage_id": "STAGE-009",
+      "name": "FINAL_QA",
+      "owner": "codex",
+      "visual_reviewer": "antigravity",
+      "next_stage": "DONE"
+    }
+  ],
+  "transitions": {
+    "STAGE-003": "STAGE-004",
+    "STAGE-004": "STAGE-005",
+    "STAGE-005": "STAGE-006",
+    "STAGE-006": "STAGE-007",
+    "STAGE-007": "STAGE-008",
+    "STAGE-008": "STAGE-009",
+    "STAGE-009": "DONE"
+  },
+  "transition_rules": {
+    "approved_or_completed": "advance_exactly_one_explicit_transition",
+    "revision_required": "create_one_revision_task_for_current_owner",
+    "duplicate_next_stage_task": "forbidden",
+    "no_pending_task_is_not_completion": "recover_required_task_for_current_stage"
+  },
+  "workflow_invariants": [
+    "IF current_stage != STAGE-009 AND project_status != DONE, absence_of_actionable_tasks_is_an_error",
+    "project_status may be DONE only after STAGE-009 is completed",
+    "project_status may be DONE only when mandatory_mvp_criteria_pass",
+    "project_status may be DONE only when website_build_succeeds",
+    "project_status may be DONE only when optimized_glb_loads_successfully",
+    "project_status may be DONE only when viewer_controls_work",
+    "project_status may be DONE only when final_qa_is_recorded",
+    "completed_stages are append_only",
+    "advance_at_most_one_stage_per_coordinator_run"
+  ],
+  "final_completion_requirements": {
+    "required_stage": "STAGE-009",
+    "required_status": "completed",
+    "mandatory_mvp_criteria_pass": true,
+    "website_build_succeeds": true,
+    "optimized_glb_loads_successfully": true,
+    "viewer_controls_work": true,
+    "final_qa_recorded": true
+  }
+}
