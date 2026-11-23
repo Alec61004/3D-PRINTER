@@ -293,7 +293,7 @@ h1 em {
 }
 
 /* =========================================================================
-   4. EDITORIAL ARCHITECTURAL 3D PRINTER SHOWCASE CONTAINER
+   4. PHOTOREALISTIC 3D PRINTER INTEGRATED DIRECTLY INTO HERO
    ========================================================================= */
 .hero-printer-stage {
   position: relative;
@@ -308,54 +308,25 @@ h1 em {
   overflow: visible;
 }
 
-.editorial-printer-frame {
+.printer-direct-wrap {
   position: relative;
   width: 100%;
-  max-width: 680px;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #eae5de;
-  border: 1px solid rgba(19, 75, 110, 0.14);
-  box-shadow: 
-    0 24px 50px -12px rgba(19, 75, 110, 0.14),
-    0 8px 24px -6px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(0, 0, 0, 0.02);
-  display: block;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
 }
 
-.editorial-printer-img {
+.printer-direct-img {
   width: 100%;
   height: auto;
+  max-height: 580px;
+  object-fit: contain;
+  object-position: center bottom;
   display: block;
-  object-fit: cover;
   user-select: none;
-}
-
-.editorial-badge {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 14px;
-  background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--color-brand-deep);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10b981;
+  pointer-events: none;
 }
 
 /* =========================================================================
@@ -680,8 +651,8 @@ h1 em {
     height: auto;
     padding: 16px 32px 48px;
   }
-  .editorial-printer-frame {
-    max-width: 580px;
+  .printer-direct-wrap {
+    max-width: 540px;
     margin: 0 auto;
   }
   .stats {
@@ -720,16 +691,12 @@ h1 em {
     height: auto;
     padding: 12px 16px 36px;
   }
-  .editorial-printer-frame {
-    max-width: 100%;
-    border-radius: 14px;
+  .printer-direct-wrap {
+    max-width: 360px;
     margin: 0 auto;
   }
-  .editorial-badge {
-    top: 12px;
-    left: 12px;
-    font-size: 10px;
-    padding: 5px 11px;
+  .printer-direct-img {
+    max-height: 340px;
   }
   .stats {
     grid-template-columns: 1fr;
