@@ -23,6 +23,7 @@ env/
 venv/
 
 # Scratch & temp files
+scratch/
 scratch_*
 *.log
 

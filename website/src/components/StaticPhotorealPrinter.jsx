@@ -8,13 +8,13 @@ export function StaticPhotorealPrinter() {
     >
       <div className="printer-presentation-wrap">
         <picture>
-          <source srcSet="/printer_photoreal_seamless.webp" type="image/webp" />
+          <source srcSet="/hero_architectural_printer.webp" type="image/webp" />
           <img
-            src="/printer_photoreal_seamless.png"
-            alt="Máy in 3D công nghiệp buồng kín Deltrol CoreXY đang in đồ gá carbon PA-CF"
+            src="/hero_architectural_printer.png"
+            alt="Máy in 3D công nghiệp buồng kín Deltrol CoreXY trong không gian kiến trúc tối giản"
             className="printer-photoreal-img"
-            width="2840"
-            height="2160"
+            width="1024"
+            height="764"
             loading="eager"
             decoding="async"
           />
