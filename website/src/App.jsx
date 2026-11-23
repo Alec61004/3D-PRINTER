@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PhotorealPrinterScene } from "./components/Scene";
+import { StaticPhotorealPrinter } from "./components/StaticPhotorealPrinter";
 import "./styles.css";
 
 export default function App() {
@@ -86,8 +86,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* Right Column: Photoreal P2S 3D Printer Scene */}
-        <PhotorealPrinterScene />
+        {/* Right Column: Static Photoreal Industrial 3D Printer (Phase 1) */}
+        <StaticPhotorealPrinter />
       </section>
 
       {/* 4. 3-Column Stats Strip below Hero */}
