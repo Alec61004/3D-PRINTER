@@ -13,8 +13,8 @@ export function StaticPhotorealPrinter() {
             src="/printer_photoreal_seamless.png"
             alt="Máy in 3D công nghiệp buồng kín Deltrol CoreXY đang in đồ gá carbon PA-CF"
             className="printer-photoreal-img"
-            width="2660"
-            height="2110"
+            width="1580"
+            height="1200"
             loading="eager"
             decoding="async"
           />
