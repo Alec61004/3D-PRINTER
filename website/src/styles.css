@@ -158,12 +158,12 @@ button {
 }
 
 /* =========================================================================
-   3. HERO SECTION (2-COLUMN GRID ~58% / 42%)
+   3. HERO SECTION (2-COLUMN GRID ~50% / 50%)
    ========================================================================= */
 .hero {
   min-height: 680px;
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 50% 50%;
   align-items: center;
   border-bottom: 1px solid var(--color-line);
   background: #ffffff;
@@ -172,7 +172,7 @@ button {
 }
 
 .copy {
-  padding: 56px 48px 56px 64px;
+  padding: 56px 40px 56px 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -293,7 +293,7 @@ h1 em {
 }
 
 /* =========================================================================
-   4. PHOTOREALISTIC STATIC 3D PRINTER STAGE (PHASE 1 - PURE SEAMLESS GROUND)
+   4. EDITORIAL ARCHITECTURAL 3D PRINTER SHOWCASE CONTAINER
    ========================================================================= */
 .hero-printer-stage {
   position: relative;
@@ -304,28 +304,58 @@ h1 em {
   align-items: center;
   justify-content: center;
   background: transparent;
-  padding: 24px 32px 24px 0;
+  padding: 32px 48px 32px 16px;
   overflow: visible;
 }
 
-.printer-presentation-wrap {
+.editorial-printer-frame {
   position: relative;
   width: 100%;
-  max-width: 660px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 680px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #eae5de;
+  border: 1px solid rgba(19, 75, 110, 0.14);
+  box-shadow: 
+    0 24px 50px -12px rgba(19, 75, 110, 0.14),
+    0 8px 24px -6px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  display: block;
 }
 
-.printer-photoreal-img {
+.editorial-printer-img {
   width: 100%;
   height: auto;
-  max-height: 590px;
-  object-fit: contain;
-  object-position: center;
   display: block;
+  object-fit: cover;
   user-select: none;
-  pointer-events: none;
+}
+
+.editorial-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-brand-deep);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
 }
 
 /* =========================================================================
@@ -646,12 +676,13 @@ h1 em {
   }
   .printer-stage-seamless,
   .hero-printer-stage {
-    min-height: 460px;
-    height: 460px;
-    padding: 16px 24px;
+    min-height: auto;
+    height: auto;
+    padding: 16px 32px 48px;
   }
-  .printer-photoreal-img {
-    max-height: 440px;
+  .editorial-printer-frame {
+    max-width: 580px;
+    margin: 0 auto;
   }
   .stats {
     height: auto;
@@ -687,13 +718,18 @@ h1 em {
   .hero-printer-stage {
     min-height: auto;
     height: auto;
-    padding: 24px 16px 36px;
+    padding: 12px 16px 36px;
   }
-  .printer-presentation-wrap {
-    max-width: 360px;
+  .editorial-printer-frame {
+    max-width: 100%;
+    border-radius: 14px;
+    margin: 0 auto;
   }
-  .printer-photoreal-img {
-    max-height: 330px;
+  .editorial-badge {
+    top: 12px;
+    left: 12px;
+    font-size: 10px;
+    padding: 5px 11px;
   }
   .stats {
     grid-template-columns: 1fr;
