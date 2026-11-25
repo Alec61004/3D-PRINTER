@@ -78,6 +78,7 @@ Sau khi dispatch, helper khởi chạy watcher một lần cho đúng task đó.
 - Ngưỡng 3 revision chỉ khóa **hướng/pipeline hiện tại**. Sau đó Codex phải pivot sang asset, phương pháp dựng, pipeline hoặc bộ reference khác rồi tiếp tục vòng lặp; không được dừng mục tiêu toàn dự án.
 - Chỉ được kết thúc khi Codex audit xác nhận hình học, silhouette, tỷ lệ, vật liệu, camera và các chi tiết chính đã đạt tiêu chí reference; nếu chưa đạt thì trạng thái vẫn là `REVISION_REQUIRED`/`PIVOT_REQUIRED` và phải có task kế tiếp.
 - Quy tắc này là persistent cho các lượt Codex sau, kể cả khi cách nhau nhiều giờ hoặc conversation mới; luôn đọc lại `AGENTS.md` và policy tại `bridge/coordinator/visual-acceptance-policy.md` trước khi quyết định dừng.
+- Chuẩn nghiệm thu chi tiết của Deltrol P2S nằm tại `reports/reference-fidelity-criteria.md`; mọi task visual mới phải dùng đúng fixture/camera/ngưỡng trong file này và phải ghi đủ ma trận landmark trước khi có thể kết luận `PASS`.
 
 ### GLB repair harness
 
