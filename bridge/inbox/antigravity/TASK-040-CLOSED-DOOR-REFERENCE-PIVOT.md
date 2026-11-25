@@ -1,8 +1,10 @@
 ---
 task_id: TASK-040-CLOSED-DOOR-REFERENCE-PIVOT
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
 created_at: 2026-11-25T19:30:00+07:00
+completed_at: 2026-11-25T19:25:00+07:00
 request: Pivot the true-3D explorer toward the reference's closed smoked-glass printer appearance. Do not stop at framing or structural GLB validity; the front must visually match the reference.
 result_path: assets/models/raw/deltrol_p2s_explorer_v8.glb
 ---
