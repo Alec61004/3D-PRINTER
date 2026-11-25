@@ -62,6 +62,9 @@ All gates below must pass. A candidate is `REVISION_REQUIRED` if any one fails.
 ### Decision rule and loop behavior
 
 - Report every gate as `PASS` or `FAIL` with measured values, screenshot paths, and the reason for any failure. Do not use an aggregate “looks better” verdict.
+- **Evidence-consistency rule:** numerical ROI/bbox results never override the actual fixed-fixture screenshot. If the screenshot visibly disagrees with the reference's global brightness, material hierarchy, silhouette, or landmark readability, the gate is `FAIL` and the metric is treated as invalid/misaligned until a side-by-side overlay explains it. A claimed `15/15` ROI result cannot pass a visibly dark/flat render.
+- Every future handoff must include a direct reference-vs-candidate contact sheet using the same crop, plus a luminance/value-hierarchy note for forehead, pillar/cheek, right flank, glass, chamber, console and shadow. The reviewer must inspect the contact sheet before trusting sampled points.
+- Analytic/unlit materials may not be used to game the ROI sampler while the fixed viewer produces a materially different visual hierarchy. If `KHR_materials_unlit` or baked color inversion is used, the report must prove the same color pipeline and the contact sheet must still pass visual inspection.
 - `PASS` is reserved for Codex's audit after reading the artifact and screenshots. Antigravity's `completed` is only a handoff.
 - Three consecutive revisions without meaningful improvement retire the current approach, but do not stop the project. Create a pivot task (different mesh source, reconstruction method, asset, or reference set) and reapply this same gate.
 - For a single-view reference, pixel-exact hidden-side geometry is not inferable. Therefore the front view is the fidelity gate; rotated views are continuity and artifact gates unless additional multi-angle references are supplied.

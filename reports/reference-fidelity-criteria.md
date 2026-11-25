@@ -64,3 +64,7 @@ The reviewer must explicitly mark each item `PASS`/`FAIL`, not infer it from the
 - Codex verdict: `PASS`, `REVISION_REQUIRED`, or `PIVOT_REQUIRED`.
 
 Current decision: the exact reference image may remain the fidelity hero, while the true-3D explorer remains `REVISION_REQUIRED` until the front gate and landmark matrix pass.
+
+## Evidence integrity rule
+
+The sampled metrics are supporting evidence, not a substitute for the image. A direct contact sheet is mandatory. If the candidate looks globally darker/flatter, loses readable interior detail, or reverses the reference's forehead–pillar–right-flank hierarchy while the ROI table says PASS, Codex must mark the candidate `REVISION_REQUIRED` and diagnose coordinate/color-pipeline mismatch. Unlit/baked analytical materials require an explicit proof that the audit viewer and reference use the same color pipeline; otherwise the visual screenshot wins.
