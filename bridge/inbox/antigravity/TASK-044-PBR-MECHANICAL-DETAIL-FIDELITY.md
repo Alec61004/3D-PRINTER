@@ -1,8 +1,10 @@
 ---
 task_id: TASK-044-PBR-MECHANICAL-DETAIL-FIDELITY
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
 created_at: 2026-11-25T21:00:00+07:00
+completed_at: 2026-11-25T21:10:00+07:00
 request: Improve v11's photoreal mechanical detail and PBR material fidelity against the reference contact sheet. The model must read as the same printer, not a box with pale interior primitives.
 result_path: assets/models/raw/deltrol_p2s_explorer_v12.glb
 ---
