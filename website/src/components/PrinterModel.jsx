@@ -9,7 +9,9 @@ export const Y_BED_TOP = 0.038;
 export const Y_BED_BOTTOM = -0.128;
 export const TOTAL_TRAVEL = Y_BED_TOP - Y_BED_BOTTOM;
 
-const MODEL_URL = "/models/deltrol_p2s_optimized.glb";
+// Hybrid handoff: fidelity mode uses the locked reference image; exploration
+// mode loads the connected true-3D explorer asset produced by TASK-038.
+const MODEL_URL = "/models/deltrol_p2s_explorer_v6.glb";
 
 // PBR Material Palette strictly calibrated to neutral champagne-silver aerospace finish
 // Reference: assets/source/printer-hero-reference-2026-11-23.png

@@ -76,7 +76,7 @@ export function PrinterControlsUI({
 
         <div className="playback-status">
           <span className="status-dot printing" />
-          <span className="status-label">Kéo chuột hoặc vuốt để xoay 360°</span>
+          <span className="status-label">Kéo chuột hoặc vuốt để khám phá mô hình 3D</span>
         </div>
       </div>
     </div>

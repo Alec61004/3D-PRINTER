@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TASK-029 True 3D Audit Viewer</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1226px;
+      height: 708px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    canvas {
+      display: block;
+      width: 1226px;
+      height: 708px;
+    }
+    #hud {
+      position: fixed;
+      top: 12px;
+      left: 14px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      color: #475569;
+      background: rgba(255, 255, 255, 0.86);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      pointer-events: none;
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/website/node_modules/three/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="hud">Loading...</div>
+  <script type="module">
+    import * as THREE from "three";
+    import { GLTFLoader } from "/website/node_modules/three/examples/jsm/loaders/GLTFLoader.js";
+
+    const params = new URLSearchParams(window.location.search);
+    const angle = params.get("angle") || "front";
+    const modelUrl = params.get("model") || "/assets/models/raw/deltrol_p2s_source_geometry_pivot_v5_rev1.glb";
+
+    const width = 1226;
+    const height = 708;
+
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      preserveDrawingBuffer: true,
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(1);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setClearColor(0xffffff, 1);
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff);
+
+    const camera = new THREE.PerspectiveCamera(27, width / height, 0.01, 50);
+
+    const basePos = new THREE.Vector3(0.86, 0.22, 1.50);
+    const r = basePos.length();
+    const baseAzimuth = Math.atan2(basePos.x, basePos.z);
+    const baseElev = Math.asin(basePos.y / r);
+
+    let az = baseAzimuth;
+    let el = baseElev;
+    let label = "Front Reference 3/4 (~30 deg)";
+
+    if (angle === "left20") {
+      az = baseAzimuth - THREE.MathUtils.degToRad(20);
+      label = "Rotated ~20 deg Left";
+    } else if (angle === "right20") {
+      az = baseAzimuth + THREE.MathUtils.degToRad(20);
+      label = "Rotated ~20 deg Right";
+    } else if (angle === "elevated") {
+      el = baseElev + THREE.MathUtils.degToRad(18);
+      label = "Elevated Angle (+18 deg)";
+    }
+
+    const cx = r * Math.cos(el) * Math.sin(az);
+    const cy = r * Math.sin(el);
+    const cz = r * Math.cos(el) * Math.cos(az);
+    camera.position.set(cx, cy, cz);
+    camera.lookAt(0, -0.01, 0);
+
+    // Exact Studio Lighting Rig from Scene.jsx
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+
+    const keyLight = new THREE.DirectionalLight(0xf9e8d5, 1.65);
+    keyLight.position.set(2.8, 3.6, 2.6);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xf3e4d6, 0.65);
+    fillLight.position.set(-2.4, 1.8, 1.6);
+    scene.add(fillLight);
+
+    const frontFill = new THREE.DirectionalLight(0xffffff, 0.35);
+    frontFill.position.set(0, 0.5, 2.6);
+    scene.add(frontFill);
+
+    const rearFill = new THREE.DirectionalLight(0xeef2f6, 0.45);
+    rearFill.position.set(-1.5, 1.2, -2.5);
+    scene.add(rearFill);
+
+    // Warm Interior Chamber Lighting
+    const chamberSpot = new THREE.SpotLight(0xffe8d1, 4.2, 0, 0.72, 0.80);
+    chamberSpot.position.set(0, 0.20, 0);
+    scene.add(chamberSpot);
+
+    const chamberPoint = new THREE.PointLight(0xffcca0, 2.2, 0.75);
+    chamberPoint.position.set(0, 0.04, 0.04);
+    scene.add(chamberPoint);
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xcad2da, 0.60));
+
+    // Soft radial ambient contact shadow under feet (matching Scene.jsx ContactShadows)
+    const shadowCanvas = document.createElement("canvas");
+    shadowCanvas.width = 256;
+    shadowCanvas.height = 256;
+    const sctx = shadowCanvas.getContext("2d");
+    const grad = sctx.createRadialGradient(128, 128, 22, 128, 128, 122);
+    grad.addColorStop(0.0, "rgba(15, 20, 26, 0.34)");
+    grad.addColorStop(0.55, "rgba(15, 20, 26, 0.14)");
+    grad.addColorStop(1.0, "rgba(15, 20, 26, 0.0)");
+    sctx.fillStyle = grad;
+    sctx.fillRect(0, 0, 256, 256);
+    const shadowTex = new THREE.CanvasTexture(shadowCanvas);
+    const contactPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.68, 0.68),
+      new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false })
+    );
+    contactPlane.rotation.x = -Math.PI / 2;
+    contactPlane.position.y = -0.228;
+    scene.add(contactPlane);
+
+    const SMOKED_GLASS = new THREE.Color("#12161a");
+    const DARK_CHASSIS = new THREE.Color("#1a1d22");
+    const GOLD_PEI = new THREE.Color("#d8a536");
+    const CARBON_ARM = new THREE.Color("#26292f");
+    const BRASS = new THREE.Color("#e2af34");
+    const STEEL = new THREE.Color("#dbe0e6");
+
+    const loader = new GLTFLoader();
+    loader.load(
+      modelUrl,
+      (gltf) => {
+        const model = gltf.scene;
+        model.rotation.set(-Math.PI / 2, 0, 0);
+        model.scale.set(1.0, 1.0, 1.12);
+
+        let nodeCount = 0;
+        let meshCount = 0;
+        model.traverse((obj) => {
+          nodeCount++;
+          if (!obj.isMesh) return;
+          meshCount++;
+          const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+          for (const mat of mats) {
+            if (!mat) continue;
+            if (
+              mat.name === "Smoked Glass" ||
+              obj.name === "front_glass_door" ||
+              obj.name === "left_glass_window" ||
+              obj.name === "right_glass_window" ||
+              obj.name === "top_roof_glass"
+            ) {
+              mat.color.copy(SMOKED_GLASS);
+              mat.transparent = true;
+              mat.depthWrite = false;
+              mat.opacity = 0.52;
+              mat.roughness = 0.08;
+              mat.metalness = 0.42;
+              mat.map = null;
+            } else if (mat.name === "Graphite Door Frame") {
+              mat.map = null;
+              mat.color.set("#25282d");
+              mat.metalness = 0.62;
+              mat.roughness = 0.24;
+            } else if (mat.name === "Touchscreen UI") {
+              mat.roughness = 0.12;
+              mat.metalness = 0.55;
+              mat.emissive = new THREE.Color("#0a1826");
+              mat.emissiveIntensity = 0.35;
+            } else if (mat.name === "Gold Textured PEI" || obj.name === "build_plate") {
+              if (!mat.map) mat.color.copy(GOLD_PEI);
+              mat.metalness = 0.65;
+              mat.roughness = 0.35;
+            } else if (mat.name === "PA-CF Carbon Fiber") {
+              if (!mat.map) mat.color.copy(CARBON_ARM);
+              mat.metalness = 0.25;
+              mat.roughness = 0.38;
+            } else if (mat.name === "Brass Nozzle") {
+              mat.map = null;
+              mat.color.copy(BRASS);
+              mat.metalness = 0.92;
+              mat.roughness = 0.18;
+            } else if (mat.name === "Linear Guide Steel") {
+              mat.map = null;
+              mat.color.copy(STEEL);
+              mat.metalness = 0.96;
+              mat.roughness = 0.10;
+            } else if (mat.name === "Chassis Matte Dark") {
+              mat.map = null;
+              mat.color.copy(DARK_CHASSIS);
+              mat.metalness = 0.45;
+              mat.roughness = 0.48;
+            }
+            mat.needsUpdate = true;
+          }
+        });
+
+        scene.add(model);
+        renderer.render(scene, camera);
+
+        document.getElementById("hud").textContent = `${label} | Nodes: ${nodeCount}, Meshes: ${meshCount}`;
+        window.__RENDER_READY = true;
+      },
+      undefined,
+      (err) => {
+        document.getElementById("hud").textContent = "ERROR: " + err.message;
+        console.error(err);
+      }
+    );
+  </script>
+</body>
+</html>

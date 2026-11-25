@@ -22,9 +22,9 @@ class ModelErrorBoundary extends React.Component {
         <div className="hero-printer-stage" aria-label="Khu vực hiển thị 3D máy in Deltrol (Chế độ 3D Single-View Depth)">
           <div className="printer-direct-wrap">
             <picture>
-              <source srcSet="/hero_architectural_printer.webp" type="image/webp" />
+              <source srcSet="/printer-reference-locked.png" type="image/png" />
               <img
-                src="/hero_architectural_printer.png"
+                src="/printer-reference-locked.png"
                 alt="Máy in 3D công nghiệp buồng kín Deltrol CoreXY"
                 className="printer-direct-img"
                 width="560"
@@ -62,9 +62,9 @@ export function StaticPhotorealPrinter() {
       >
         <div className="printer-direct-wrap">
           <picture>
-            <source srcSet="/hero_architectural_printer.webp" type="image/webp" />
+            <source srcSet="/printer-reference-locked.png" type="image/png" />
             <img
-              src="/hero_architectural_printer.png"
+              src="/printer-reference-locked.png"
               alt="Máy in 3D công nghiệp buồng kín Deltrol CoreXY"
               className="printer-direct-img"
               width="560"
@@ -81,10 +81,10 @@ export function StaticPhotorealPrinter() {
             type="button"
             className="ctrl-pill-btn mode-activate-btn"
             onClick={() => setViewMode("3d")}
-            title="Kích hoạt chế độ khám phá 3D tương tác 360°"
+            title="Kích hoạt chế độ khám phá 3D tương tác"
           >
             <span className="btn-glyph">✦</span>
-            <span>Khám phá 3D tương tác 360°</span>
+            <span>Khám phá 3D tương tác</span>
           </button>
         </div>
       </div>
