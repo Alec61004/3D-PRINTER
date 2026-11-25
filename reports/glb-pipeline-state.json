@@ -1,0 +1,119 @@
+﻿{
+    "visualFailureCount":  0,
+    "maxVisualFailures":  3,
+    "pivotRequired":  false,
+    "visualVerdict":  "PASS",
+    "repairRuns":  17,
+    "history":  [
+                    {
+                        "timestamp":  "2026-11-24T05:12:11.6665971+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-pivot-1226x708.png",
+                        "screenshotSha256":  "56e4b4e9c67e68f390d85b2420ab3af7b3cd1bff7f1492bd574e14dbacee1683",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T05:42:10.6342126+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-unibody-revision-1226x708.png",
+                        "screenshotSha256":  "9035081f3b33651e0aed0f2b6578b2f1248079bafed4a6ad590df5fe03dd50b0",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T05:54:52.8387016+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-unibody-fidelity-1226x708.png",
+                        "screenshotSha256":  "4808323db3d63e3a1bad8339317ba426ea686afbbcf4cf99082ca9804ab90304",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0",
+                        "pivotReason":  "No material visual improvement after 3 failed audits."
+                    },
+                    {
+                        "timestamp":  "2026-11-24T20:30:39.8493570+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-task023-rev2-1226x708.png",
+                        "screenshotSha256":  "ea40bb925df35d656afb325df79f25db61cc17f95406676b16b2b545f200951b",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T20:38:59.7941354+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-task024-pivot-1226x708.png",
+                        "screenshotSha256":  "759002ca4776034164ba1145d3c217ed541a249ffc49d3799f9e531745ee191e",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T20:39:53.2504181+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-task024-pivot-1226x708.png",
+                        "screenshotSha256":  "759002ca4776034164ba1145d3c217ed541a249ffc49d3799f9e531745ee191e",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0",
+                        "pivotReason":  "No material visual improvement after 3 failed audits."
+                    },
+                    {
+                        "timestamp":  "2026-11-24T20:55:22.4681444+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-task025-reference-locked-1226x708.png",
+                        "screenshotSha256":  "62e6012f40b84a1c62f675142f7454cccf6ce4e9b5702de7515dc917b2bd8e82",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T21:12:36.2447641+07:00",
+                        "verdict":  "REVISION_REQUIRED",
+                        "screenshot":  "reports/hero-3d-task026-fidelity-mode-1226x708.png",
+                        "screenshotSha256":  "9a0febce8e8b351dcc06d94ab5eb97512c075d45153204002b95bc4d7140e8f9",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T21:36:58.6084213+07:00",
+                        "verdict":  "PASS",
+                        "screenshot":  "reports/hero-3d-task027-fidelity-framing-1226x708.png",
+                        "screenshotSha256":  "775a42286884368b1cc389ad4db7e2c13b8bef336395503e2fa5efe760b18147",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    },
+                    {
+                        "timestamp":  "2026-11-24T21:50:35.2335730+07:00",
+                        "verdict":  "PASS",
+                        "screenshot":  "reports/hero-3d-task028-exploration-1226x708.png",
+                        "screenshotSha256":  "78dfdf44124b6dc000e2b0912785b6d1b8665fc29d47b2ebb0a911cc710ed59c",
+                        "reference":  "assets/source/printer-hero-reference-2026-11-23.png",
+                        "referenceSha256":  "2d8b25482c66e54fda31073a6c5ea2382be0f1ad709636fec63064ef42e8d7e0"
+                    }
+                ],
+    "lastRepair":  {
+                       "runId":  "20261124-215009",
+                       "timestamp":  "2026-11-24T21:50:17.9836995+07:00",
+                       "backupPath":  "reports/glb-pipeline/backups/20261124-215009",
+                       "source":  {
+                                      "path":  "assets/models/optimized/deltrol_p2s_optimized.glb",
+                                      "bytes":  227140,
+                                      "sha256":  "9bb7624a8615312ed8957656d0dfa1d3d27b27947028676e7d672a4067cf22ec",
+                                      "nodeCount":  20,
+                                      "meshCount":  14,
+                                      "materialCount":  7,
+                                      "imageCount":  7,
+                                      "hasRequiredNodes":  true
+                                  },
+                       "website":  {
+                                       "path":  "website/public/models/deltrol_p2s_optimized.glb",
+                                       "bytes":  227140,
+                                       "sha256":  "9bb7624a8615312ed8957656d0dfa1d3d27b27947028676e7d672a4067cf22ec",
+                                       "nodeCount":  20,
+                                       "meshCount":  14,
+                                       "materialCount":  7,
+                                       "imageCount":  7,
+                                       "hasRequiredNodes":  true
+                                   },
+                       "inputAsset":  "assets/models/raw/deltrol_p2s_photoreal_2p5d_depth.glb",
+                       "websiteBuild":  true,
+                       "visualGate":  "PENDING_SCREENSHOT_AUDIT"
+                   }
+}

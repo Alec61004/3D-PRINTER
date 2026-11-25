@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StaticPhotorealPrinter } from "./components/StaticPhotorealPrinter";
 import "./styles.css";
 
 export default function App() {
   const [activeNav, setActiveNav] = useState("materials");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("framing") === "lock" || params.get("scroll") === "ref" || window.location.hash === "#hero") {
+        window.scrollTo({ top: 73, behavior: "instant" });
+      }
+    }
+  }, []);
 
   return (
     <div className="app-shell" id="top">

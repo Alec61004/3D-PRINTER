@@ -1,8 +1,7 @@
 import React, { Suspense, useMemo, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { ContactShadows, Environment, Html, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Html, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import { createPhotorealMaterials } from "./Materials";
 import { PrinterModel, Y_NOZZLE } from "./PrinterModel";
 import { CameraDirector } from "./CameraDirector";
 import { PrintSimulation } from "./PrintSimulation";
@@ -19,7 +18,7 @@ function LoadingCard() {
   );
 }
 
-export function PhotorealPrinterScene() {
+export function PhotorealPrinterScene({ viewMode = "3d", onToggleMode }) {
   const controlsRef = useRef(null);
   const moltenLightRef = useRef(null);
   const activeNozzleRef = useRef(null);
@@ -29,6 +28,7 @@ export function PhotorealPrinterScene() {
 
   // States
   const [activePreset, setActivePreset] = useState("overview");
+  const [autoOrbitEnabled, setAutoOrbitEnabled] = useState(false);
   const [isGlassHidden, setIsGlassHidden] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
@@ -36,35 +36,41 @@ export function PhotorealPrinterScene() {
   const [printHeadPos, setPrintHeadPos] = useState([0, 0]);
   const [bedProgress, setBedProgress] = useState(0);
 
-  // CAD Standard Clipping Plane (Normal pointing up, clips anything above Y_NOZZLE)
+  // CAD Standard Clipping Plane
   const clipPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), Y_NOZZLE), []);
-  // High-Fidelity PBR Materials for P2S
-  const materials = useMemo(() => createPhotorealMaterials(clipPlane), [clipPlane]);
-
-  const handlePointerDown = () => {
-    userInteractingRef.current = true;
-    if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+  const handleToggleAutoOrbit = () => {
+    setAutoOrbitEnabled((prev) => {
+      const next = !prev;
+      userInteractingRef.current = !next;
+      return next;
+    });
   };
 
-  const handlePointerUp = () => {
+  const handleResetView = () => {
+    setActivePreset("overview");
+    if (controlsRef.current) {
+      controlsRef.current.target.set(0, 0.0, 0);
+      controlsRef.current.object.position.set(0.86, 0.22, 1.50);
+      controlsRef.current.update();
+    }
+    userInteractingRef.current = true;
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-    idleTimerRef.current = setTimeout(() => {
-      userInteractingRef.current = false;
-    }, 3000); // 3 seconds idle resumes auto-orbit as specified
+    if (autoOrbitEnabled) {
+      idleTimerRef.current = setTimeout(() => {
+        userInteractingRef.current = false;
+      }, 2500);
+    }
   };
 
   return (
     <div
       className="printer-stage-seamless"
       aria-label="Mô hình 3D máy in công nghiệp Bambu Lab P2S"
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-      onPointerLeave={handlePointerUp}
     >
       <Canvas
         shadows
         dpr={[1, 2]}
-        camera={{ position: [0.92, 0.30, 1.45], fov: 27, near: 0.01, far: 50 }}
+        camera={{ position: [0.86, 0.22, 1.50], fov: 27, near: 0.01, far: 50 }}
         gl={{ antialias: true, alpha: true, localClippingEnabled: true }}
         onCreated={({ gl, camera, scene }) => {
           gl.localClippingEnabled = true;
@@ -76,41 +82,42 @@ export function PhotorealPrinterScene() {
           gl.outputColorSpace = THREE.SRGBColorSpace;
         }}
       >
-        {/* 1. Studio Lighting Rig matching P2S Reference Photography */}
-        <ambientLight intensity={0.42} />
-        {/* Main Studio Key Softbox */}
+        {/* 1. Neutral Studio Lighting Rig (Pure crisp white, no yellow color cast on body) */}
+        <ambientLight intensity={0.55} color="#ffffff" />
+        {/* Main Studio Key Softbox (Neutral white highlight on aerospace titanium) */}
         <directionalLight
           castShadow
           position={[2.8, 3.6, 2.6]}
-          intensity={1.5}
-          color="#ffffff"
+          intensity={1.65}
+          color="#f9e8d5"
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
         {/* Cool Studio Rim / Fill Light */}
-        <directionalLight position={[-2.4, 1.8, 1.6]} intensity={0.75} color="#d4e8fa" />
+        <directionalLight position={[-2.4, 1.8, 1.6]} intensity={0.65} color="#f3e4d6" />
         {/* Front-facing soft fill for door glass reflections */}
-        <directionalLight position={[0, 0.5, 2.5]} intensity={0.35} color="#ffffff" />
-        {/* Warm & Crisp Interior LED spots lighting up the print chamber */}
-        <spotLight position={[0, 0.20, 0]} angle={0.88} penumbra={0.7} intensity={1.8} color="#fffcf5" />
-        <pointLight position={[0, 0.10, 0]} intensity={0.9} color="#ffffff" distance={0.75} />
+        <directionalLight position={[0, 0.5, 2.6]} intensity={0.35} color="#ffffff" />
+
+        {/* 2. Warm Interior Chamber Lighting (Confined inside chamber, illuminating bed & gantry) */}
+        <spotLight position={[0, 0.20, 0]} angle={0.68} penumbra={0.80} intensity={3.8} color="#ffe8d1" />
+        <pointLight position={[0, 0.04, 0.02]} intensity={1.8} color="#ffcca0" distance={0.75} />
         {/* Active Nozzle Molten Tip Point Light */}
         <pointLight ref={moltenLightRef} position={[0, Y_NOZZLE, 0]} intensity={0.0} color="#ff8811" distance={0.25} />
 
-        {/* 2. Studio Equirectangular Environment for Physical Reflections */}
-        <Environment preset="studio" />
+        {/* 3. Studio Hemisphere & Ambient Lighting for Crisp Anodized Reflections */}
+        <hemisphereLight skyColor="#ffffff" groundColor="#cad2da" intensity={0.60} />
 
         <Suspense fallback={<LoadingCard />}>
-          {/* 3. Photoreal Bambu Lab P2S 3D Model */}
+          {/* 4. Photoreal Bambu Lab P2S 3D Model */}
           <PrinterModel
-            materials={materials}
+            clipPlane={clipPlane}
             isGlassHidden={isGlassHidden}
             printHeadPos={printHeadPos}
             bedProgress={bedProgress}
             activeNozzleRef={activeNozzleRef}
           />
 
-          {/* 4. Real-time CoreXY Print Simulation */}
+          {/* 5. Real-time CoreXY Print Simulation */}
           <PrintSimulation
             clipPlane={clipPlane}
             currentCutYRef={currentCutYRef}
@@ -123,32 +130,51 @@ export function PhotorealPrinterScene() {
           />
         </Suspense>
 
-        {/* 5. Realistic Soft Contact Shadow under Rubber Feet */}
+        {/* 6. Soft Contact Shadow under Rubber Feet (Calibrated to model base height) */}
         <ContactShadows
-          position={[0, -0.228, 0]}
-          opacity={0.42}
-          scale={1.38}
-          blur={1.8}
-          far={0.45}
-          color="#0b1821"
+          position={[0, -0.270, 0]}
+          opacity={0.48}
+          scale={1.45}
+          blur={1.9}
+          far={0.50}
+          color="#0b131a"
         />
 
-        {/* 6. Precision OrbitControls with Smooth Damping */}
+        {/* 7. Precision OrbitControls with Smooth Damping (Constrained to Photoreal 2.5D Depth Cone) */}
         <OrbitControls
           ref={controlsRef}
           makeDefault
           enableDamping
           dampingFactor={0.06}
           enablePan={false}
-          enableZoom={activePreset !== "overview"}
-          minDistance={0.25}
+          enableZoom={true}
+          minDistance={0.7}
           maxDistance={2.4}
-          minPolarAngle={0.25}
+          minPolarAngle={Math.PI / 3}
           maxPolarAngle={Math.PI / 2 - 0.02}
-          target={[0, -0.01, 0]}
+          // OrbitControls azimuth is absolute around the Y axis. The hero
+          // camera is ~0.52 rad, so constrain around that angle rather than
+          // around zero; otherwise a small drag can expose the flat depth rig.
+          minAzimuthAngle={0.20}
+          maxAzimuthAngle={0.84}
+          target={[0, 0.00, 0]}
+          onStart={() => {
+            userInteractingRef.current = true;
+            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+          }}
+          onEnd={() => {
+            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+            if (autoOrbitEnabled) {
+              idleTimerRef.current = setTimeout(() => {
+                userInteractingRef.current = false;
+              }, 3000);
+            } else {
+              userInteractingRef.current = true;
+            }
+          }}
         />
 
-        {/* 7. Camera Director (3 Presets + Interpolation + Glass Fading) */}
+        {/* 8. Camera Director (3 Presets + Interpolation + Glass Fading) */}
         <CameraDirector
           activePreset={activePreset}
           controlsRef={controlsRef}
@@ -158,15 +184,15 @@ export function PhotorealPrinterScene() {
         />
       </Canvas>
 
-      {/* 8. Minimalist Glassmorphic UI Controls (Top presets + Bottom playback) */}
+      {/* 9. Minimalist Glassmorphic UI Controls (Top presets + Bottom navigation) */}
       <PrinterControlsUI
         activePreset={activePreset}
         onSelectPreset={setActivePreset}
-        isPaused={isPaused}
-        onTogglePause={() => setIsPaused((p) => !p)}
-        playbackSpeed={playbackSpeed}
-        onChangeSpeed={setPlaybackSpeed}
-        printState={printState}
+        autoOrbitEnabled={autoOrbitEnabled}
+        onToggleAutoOrbit={handleToggleAutoOrbit}
+        onResetView={handleResetView}
+        viewMode={viewMode}
+        onToggleMode={onToggleMode}
       />
     </div>
   );

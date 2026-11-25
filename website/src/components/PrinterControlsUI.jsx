@@ -4,24 +4,36 @@ import { PRESETS } from "./CameraDirector";
 export function PrinterControlsUI({
   activePreset,
   onSelectPreset,
-  isPaused,
-  onTogglePause,
-  playbackSpeed,
-  onChangeSpeed,
-  printState,
+  autoOrbitEnabled = true,
+  onToggleAutoOrbit,
+  onResetView,
+  viewMode = "3d",
+  onToggleMode,
 }) {
-  const { progress = 0, currentLayer = 0, totalLayers = 320, isPrinting = false } = printState || {};
-  const percent = Math.round(progress * 100);
-
   return (
     <div className="printer-ui-overlay" aria-label="Bộ điều khiển 3D máy in Deltrol">
-      {/* 1. Top Preset Camera Buttons */}
+      {/* Top Header: Mode Switcher & Camera Angle Presets */}
       <div className="preset-bar">
+        {onToggleMode && (
+          <button
+            type="button"
+            className="preset-btn mode-switch-btn"
+            onClick={onToggleMode}
+            title={viewMode === "3d" ? "Quay lại chế độ Reference Fidelity chuẩn" : "Bật chế độ khám phá 3D tương tác"}
+          >
+            <span className="preset-icon">{viewMode === "3d" ? "📷" : "✦"}</span>
+            <span className="preset-text">{viewMode === "3d" ? "Ảnh Reference" : "Khám phá 3D"}</span>
+          </button>
+        )}
+
+        {onToggleMode && <span className="preset-divider" aria-hidden="true" />}
+
         {Object.values(PRESETS).map((preset) => {
           const isActive = activePreset === preset.id;
           return (
             <button
               key={preset.id}
+              type="button"
               className={`preset-btn ${isActive ? "active" : ""}`}
               onClick={() => onSelectPreset(preset.id)}
               title={`Chuyển góc nhìn: ${preset.name}`}
@@ -33,39 +45,38 @@ export function PrinterControlsUI({
         })}
       </div>
 
-      {/* 2. Bottom Interactive Printing Telemetry & Speed Bar */}
-      <div className="playback-bar">
+      {/* Bottom Bar: Reset View, Auto-orbit Toggle & Interaction Telemetry */}
+      <div className="playback-bar printer-bottom-bar">
         <div className="playback-left">
-          <button
-            className="play-btn"
-            onClick={onTogglePause}
-            title={isPaused ? "Tiếp tục in" : "Tạm dừng"}
-          >
-            {isPaused ? "▶ Tiếp tục" : "⏸ Tạm dừng"}
-          </button>
+          {onResetView && (
+            <button
+              type="button"
+              className="ctrl-pill-btn reset-btn"
+              onClick={onResetView}
+              title="Đặt lại góc nhìn mặc định 3/4"
+            >
+              <span className="btn-glyph">⟲</span>
+              <span>Đặt lại góc</span>
+            </button>
+          )}
 
-          <div className="speed-pills">
-            {[1, 2, 5].map((s) => (
-              <button
-                key={s}
-                className={`speed-btn ${playbackSpeed === s ? "active" : ""}`}
-                onClick={() => onChangeSpeed(s)}
-              >
-                {s}x
-              </button>
-            ))}
-          </div>
+          {onToggleAutoOrbit && (
+            <button
+              type="button"
+              className={`ctrl-pill-btn orbit-btn ${autoOrbitEnabled ? "active" : ""}`}
+              onClick={onToggleAutoOrbit}
+              title={autoOrbitEnabled ? "Tạm dừng tự động xoay" : "Bật tự động xoay"}
+              aria-pressed={autoOrbitEnabled}
+            >
+              <span className="btn-glyph">{autoOrbitEnabled ? "⏸" : "⟳"}</span>
+              <span>{autoOrbitEnabled ? "Tự xoay: Bật" : "Tự xoay: Tắt"}</span>
+            </button>
+          )}
         </div>
 
         <div className="playback-status">
-          <span className={`status-dot ${isPrinting ? "printing" : ""}`} />
-          <span className="status-label">
-            {progress <= 0
-              ? "Bàn in sẵn sàng (Z = 0)"
-              : progress >= 1.0
-              ? "Hoàn tất 100% phôi PA-CF"
-              : `Lớp ${currentLayer} / ${totalLayers} (${percent}%)`}
-          </span>
+          <span className="status-dot printing" />
+          <span className="status-label">Kéo chuột hoặc vuốt để xoay 360°</span>
         </div>
       </div>
     </div>

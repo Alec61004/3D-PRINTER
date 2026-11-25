@@ -1,0 +1,28 @@
+﻿{
+    "runId":  "20261124-215009",
+    "timestamp":  "2026-11-24T21:50:17.9836995+07:00",
+    "backupPath":  "reports/glb-pipeline/backups/20261124-215009",
+    "source":  {
+                   "path":  "assets/models/optimized/deltrol_p2s_optimized.glb",
+                   "bytes":  227140,
+                   "sha256":  "9bb7624a8615312ed8957656d0dfa1d3d27b27947028676e7d672a4067cf22ec",
+                   "nodeCount":  20,
+                   "meshCount":  14,
+                   "materialCount":  7,
+                   "imageCount":  7,
+                   "hasRequiredNodes":  true
+               },
+    "website":  {
+                    "path":  "website/public/models/deltrol_p2s_optimized.glb",
+                    "bytes":  227140,
+                    "sha256":  "9bb7624a8615312ed8957656d0dfa1d3d27b27947028676e7d672a4067cf22ec",
+                    "nodeCount":  20,
+                    "meshCount":  14,
+                    "materialCount":  7,
+                    "imageCount":  7,
+                    "hasRequiredNodes":  true
+                },
+    "inputAsset":  "assets/models/raw/deltrol_p2s_photoreal_2p5d_depth.glb",
+    "websiteBuild":  true,
+    "visualGate":  "PENDING_SCREENSHOT_AUDIT"
+}

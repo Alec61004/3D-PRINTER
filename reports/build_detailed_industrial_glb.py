@@ -327,7 +327,9 @@ class DetailedGLBBuilder:
         # Vertical corner columns (substantial structural corner posts)
         for x in (-0.185, 0.185):
             for y in (-0.185, 0.185):
-                self.add_box("enclosure", f"corner_post_{x}_{y}", (x, y, -0.005), (0.034, 0.034, 0.442), dark_chassis)
+                # Cylindrical posts give the enclosure the rounded vertical
+                # silhouette visible in the reference instead of sharp boxes.
+                self.add_cylinder("enclosure", f"corner_post_{x}_{y}", (x, y, -0.005), 0.022, 0.442, "z", dark_chassis)
 
         # Chamfered corner bumper caps (4 top, 4 bottom - iconic Doop Canvas design)
         for x in (-0.186, 0.186):
@@ -337,27 +339,28 @@ class DetailedGLBBuilder:
 
         # Front top header beam
         self.add_box("enclosure", "front_top_beam", (0, -0.186, 0.205), (0.34, 0.026, 0.026), dark_chassis)
-        # Front bottom fascia (left side, right side is console)
+        # Front bottom fascia, symmetric around the recessed center console.
         self.add_box("enclosure", "front_bot_fascia_left", (-0.085, -0.186, -0.198), (0.170, 0.024, 0.048), dark_chassis)
+        self.add_box("enclosure", "front_bot_fascia_right", (0.085, -0.186, -0.198), (0.170, 0.024, 0.048), dark_chassis)
 
         # Side walls with window cutouts for filament spools
         # Left side wall: Solid dark charcoal panel with central tinted window & vent louvers
-        self.add_box("enclosure", "left_wall_top", (-0.188, 0, 0.165), (0.014, 0.34, 0.080), dark_chassis)
-        self.add_box("enclosure", "left_wall_bot", (-0.188, 0, -0.165), (0.014, 0.34, 0.080), dark_chassis)
-        self.add_box("enclosure", "left_wall_front", (-0.188, -0.135, 0), (0.014, 0.070, 0.250), dark_chassis)
-        self.add_box("enclosure", "left_wall_rear", (-0.188, 0.135, 0), (0.014, 0.070, 0.250), dark_chassis)
-        self.add_box("enclosure", "left_glass_window", (-0.188, 0, 0), (0.008, 0.20, 0.250), smoked_glass)
+        self.add_box("enclosure", "left_wall_top", (-0.188, 0, 0.185), (0.014, 0.34, 0.032), dark_chassis)
+        self.add_box("enclosure", "left_wall_bot", (-0.188, 0, -0.185), (0.014, 0.34, 0.032), dark_chassis)
+        self.add_box("enclosure", "left_wall_front", (-0.188, -0.154, 0), (0.014, 0.032, 0.34), dark_chassis)
+        self.add_box("enclosure", "left_wall_rear", (-0.188, 0.154, 0), (0.014, 0.032, 0.34), dark_chassis)
+        self.add_box("enclosure", "left_glass_window", (-0.188, 0, 0), (0.008, 0.30, 0.34), smoked_glass)
         # Recessed handle on left
         self.add_box("enclosure", "left_handle", (-0.194, 0, 0.160), (0.012, 0.080, 0.032), chassis_accent)
         # Vent louvers on lower left
         self.add_box("enclosure", "left_vent", (-0.194, 0, -0.165), (0.010, 0.160, 0.035), rubber_belt)
 
         # Right side wall: Solid dark charcoal panel with central tinted window & vent louvers
-        self.add_box("enclosure", "right_wall_top", (0.188, 0, 0.165), (0.014, 0.34, 0.080), dark_chassis)
-        self.add_box("enclosure", "right_wall_bot", (0.188, 0, -0.165), (0.014, 0.34, 0.080), dark_chassis)
-        self.add_box("enclosure", "right_wall_front", (0.188, -0.135, 0), (0.014, 0.070, 0.250), dark_chassis)
-        self.add_box("enclosure", "right_wall_rear", (0.188, 0.135, 0), (0.014, 0.070, 0.250), dark_chassis)
-        self.add_box("enclosure", "right_glass_window", (0.188, 0, 0), (0.008, 0.20, 0.250), smoked_glass)
+        self.add_box("enclosure", "right_wall_top", (0.188, 0, 0.185), (0.014, 0.34, 0.032), dark_chassis)
+        self.add_box("enclosure", "right_wall_bot", (0.188, 0, -0.185), (0.014, 0.34, 0.032), dark_chassis)
+        self.add_box("enclosure", "right_wall_front", (0.188, -0.154, 0), (0.014, 0.032, 0.34), dark_chassis)
+        self.add_box("enclosure", "right_wall_rear", (0.188, 0.154, 0), (0.014, 0.032, 0.34), dark_chassis)
+        self.add_box("enclosure", "right_glass_window", (0.188, 0, 0), (0.008, 0.30, 0.34), smoked_glass)
         # Recessed handle on right
         self.add_box("enclosure", "right_handle", (0.194, 0, 0.160), (0.012, 0.080, 0.032), chassis_accent)
         # Vent louvers on lower right

@@ -50,6 +50,50 @@ Quy trình:
 5. Phản hồi gửi cho agent tạo task được ghi vào `bridge/outbox/` bằng file riêng, có cùng `task_id`.
 6. Trước khi chỉnh sửa, agent phải kiểm tra task chưa bị owner khác khóa/đang xử lý. Không chỉnh sửa task hoặc artifact đang được agent khác sử dụng.
 
+## Đánh thức session Antigravity
+
+Sau khi tạo task mới trong `bridge/inbox/antigravity/`, Codex phải dispatch task tới session Antigravity bằng helper:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\dispatch-antigravity-task.ps1 -TaskPath .\bridge\inbox\antigravity\TASK-XXX.md
+```
+
+Helper chỉ gửi một wake/handoff message trỏ tới task file bằng Reason Network; nội dung task và quyền chỉnh sửa vẫn lấy từ file trong `bridge/`. Nếu session đang idle, message được xếp hàng và sẽ được nhận ở tool/turn boundary kế tiếp. Không tự tạo phản hồi thay Antigravity.
+
+Sau khi dispatch, helper khởi chạy watcher một lần cho đúng task đó. Khi task chuyển sang `completed`, `blocked` hoặc `cancelled` và đồng thời tồn tại cả report lẫn outbox response, watcher queue một prompt vào Codex thread đã đăng ký trong `bridge/coordinator/codex-thread.json` bằng `codex queue --resume` qua app-server localhost. Nếu queue trực tiếp đã nhận message thì không coi việc Reason Network không còn session là lỗi; Reason Network `--notify` chỉ là fallback best-effort. Codex phải đọc artifact và audit, không coi message là bằng chứng hoàn thành.
+
+### Quy tắc dừng revision visual
+
+- Mỗi revision visual bắt buộc có screenshot mới và đối chiếu với reference cùng kích thước/góc nhìn.
+- Nếu **3 revision liên tiếp** không tạo ra cải thiện rõ ràng ở silhouette hoặc hình học chính, không tiếp tục vá shader, camera hay thêm box vào cùng asset.
+- Khi chạm ngưỡng 3 lần, đánh dấu `REVISION_REQUIRED`/`BLOCKED` và chuyển hướng sang pipeline khác: dựng lại mesh bằng Blender/equivalent, dùng asset 3D khác, hoặc yêu cầu thêm reference đa góc.
+- Build pass, model load được hoặc xoay được không được tính là cải thiện visual.
+
+### Quy tắc persistent: Codex giữ vòng lặp đến khi đạt reference
+
+- Đây là quy tắc điều phối của **Codex**, không chỉ là hướng dẫn cho Antigravity. Antigravity chỉ thực thi visual task và bàn giao artifact; Codex là người quyết định đạt hay chưa đạt.
+- Sau mỗi handoff, Codex phải đọc task report, outbox response, artifact và screenshot mới; tự đối chiếu với reference cùng kích thước/góc nhìn. Không tin verdict `completed`/`PASS` nếu chưa có bằng chứng visual.
+- Khi Antigravity đã ghi đủ report + outbox cho một handoff, agent phải đóng task handoff ở trạng thái terminal (`completed` với `verdict: REVISION_REQUIRED`/`BLOCKED`, hoặc `completed` với `PASS`), đồng thời ghi `completed_at`. Không giữ task ở `in_progress` trong lúc chờ Codex audit; watcher chỉ đánh thức Codex từ trạng thái terminal.
+- Nếu hình chưa đạt reference, Codex phải tạo/giao revision tiếp theo trong cùng vòng lặp; không kết thúc chỉ vì build pass, GLB load được hoặc Antigravity đã báo xong.
+- Ngưỡng 3 revision chỉ khóa **hướng/pipeline hiện tại**. Sau đó Codex phải pivot sang asset, phương pháp dựng, pipeline hoặc bộ reference khác rồi tiếp tục vòng lặp; không được dừng mục tiêu toàn dự án.
+- Chỉ được kết thúc khi Codex audit xác nhận hình học, silhouette, tỷ lệ, vật liệu, camera và các chi tiết chính đã đạt tiêu chí reference; nếu chưa đạt thì trạng thái vẫn là `REVISION_REQUIRED`/`PIVOT_REQUIRED` và phải có task kế tiếp.
+- Quy tắc này là persistent cho các lượt Codex sau, kể cả khi cách nhau nhiều giờ hoặc conversation mới; luôn đọc lại `AGENTS.md` và policy tại `bridge/coordinator/visual-acceptance-policy.md` trước khi quyết định dừng.
+
+### GLB repair harness
+
+- Mọi lần Codex sửa GLB sau handoff hình học phải chạy `tools/glb-repair-harness.ps1 -Action repair`.
+- Harness bắt buộc backup GLB cũ, regenerate, validate glTF 2.0 + node bắt buộc, kiểm tra hash source/public và chạy production build website.
+- Sau đó phải ghi screenshot audit bằng `-Action record-audit`; không được ghi PASS chỉ vì build thành công.
+- Harness tự khóa repair tiếp theo khi đã có 3 `REVISION_REQUIRED` liên tiếp và yêu cầu pivot sang asset/method khác.
+
+### Quy tắc chống spam conversation
+
+- Không dùng scheduled automation chạy định kỳ để quét inbox. Antigravity tạo conversation mới cho mỗi lượt schedule, kể cả khi không có task.
+- Scheduler phải để `paused`; khi Codex tạo task mới, Codex gọi `dispatch-antigravity-task.ps1` tới session ổn định `pc/3dprinter-antigravity`.
+- Vòng lặp review/revision cũng dispatch qua cùng session ổn định. Khóa `bridge/coordinator/antigravity-worker.lock` và guard `status: in_progress` là lớp chống chạy chồng.
+- Conversation sidebar chỉ là log; trạng thái chuẩn phải đọc từ task file, report và response trong workspace.
+- Antigravity idle wake cần Reason Network sidecar ở trạng thái `Up`. Trên máy Windows này, sidecar cần executable thật `agentapi` trên `PATH`; shim tại `%USERPROFILE%\\.local\\bin\\agentapi.exe` gọi native `language_server.exe agentapi`.
+
 ## Quy ước đặt tên
 
 - Task: `TASK-XXX.md` hoặc `TASK-XXX.json`.
