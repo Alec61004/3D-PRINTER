@@ -1,7 +1,9 @@
 ---
 task_id: TASK-048-DEBUG-REFERENCE-PROJECTION
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T08:49:15+07:00
 created_at: 2026-11-26T09:30:00+07:00
 request: Debug and prove the reference-painted texture projection on the real mesh. The rail/turbine render must visibly change to match reference; do not report a projection based only on a helper function existing in the script.
 result_path: assets/models/raw/deltrol_p2s_explorer_v16.glb
