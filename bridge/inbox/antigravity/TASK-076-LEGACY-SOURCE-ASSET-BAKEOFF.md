@@ -1,7 +1,9 @@
 ---
 task_id: TASK-076-LEGACY-SOURCE-ASSET-BAKEOFF
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:29:30+07:00
 created_at: 2026-11-26T11:10:00+07:00
 request: >-
   Pivot away from the v33-derived upper-asset workflow. Perform a fixed-fixture
