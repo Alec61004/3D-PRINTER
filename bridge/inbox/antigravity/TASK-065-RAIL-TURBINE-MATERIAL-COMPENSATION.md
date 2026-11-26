@@ -1,7 +1,9 @@
 ---
 task_id: TASK-065-RAIL-TURBINE-MATERIAL-COMPENSATION
 owner: antigravity
-status: in_progress
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:01:15+07:00
 created_at: 2026-11-26T13:45:00+07:00
 request: >-
   Continue from TASK-064. Spot lights solved spill but not the recessed rail and
