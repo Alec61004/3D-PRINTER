@@ -1,7 +1,9 @@
 ---
 task_id: TASK-068-REAL-RAIL-GEOMETRY-INSERT
 owner: antigravity
-status: in_progress
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:10:45+07:00
 created_at: 2026-11-26T10:18:00+07:00
 request: >-
   Continue from v33/v35 baseline. TASK-067 object/depth raycast proved that
