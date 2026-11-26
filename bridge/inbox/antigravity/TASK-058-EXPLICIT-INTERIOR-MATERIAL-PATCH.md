@@ -1,7 +1,9 @@
 ---
 task_id: TASK-058-EXPLICIT-INTERIOR-MATERIAL-PATCH
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T09:32:20+07:00
 created_at: 2026-11-26T11:10:00+07:00
 request: >-
   TASK-057 was a no-op: v25 is byte-identical to v23, and the required
