@@ -1,7 +1,9 @@
 ---
 task_id: TASK-059-PBR-CALIBRATION-GRID
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T09:36:30+07:00
 created_at: 2026-11-26T11:30:00+07:00
 request: >-
   TASK-058 executed but the KHR_materials_unlit fallback flattened the interior
