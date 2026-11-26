@@ -1,7 +1,9 @@
 ---
 task_id: TASK-079-FREE-EXTERNAL-CAD-SOURCE-PIVOT
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:37:30+07:00
 created_at: 2026-11-26T11:36:00+07:00
 request: >-
   Pivot away from the failed legacy GLB grafts. Find and evaluate a free,
