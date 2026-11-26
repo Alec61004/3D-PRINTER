@@ -1,7 +1,9 @@
 ---
 task_id: TASK-062-LIGHT-RIG-GLASS-CLOSEOUT
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T09:49:25+07:00
 created_at: 2026-11-26T12:35:00+07:00
 request: >-
   Continue the improving light-rig path from TASK-061. Current errors are rail
