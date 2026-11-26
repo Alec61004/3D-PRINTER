@@ -1,7 +1,9 @@
 ---
 task_id: TASK-061-LIGHT-RIG-GLASS-FINAL-TUNE
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T09:45:00+07:00
 created_at: 2026-11-26T12:15:00+07:00
 request: >-
   Continue from TASK-060, which showed real improvement with local lights:
