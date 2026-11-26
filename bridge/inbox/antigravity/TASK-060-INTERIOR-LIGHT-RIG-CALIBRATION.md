@@ -1,7 +1,9 @@
 ---
 task_id: TASK-060-INTERIOR-LIGHT-RIG-CALIBRATION
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T09:40:40+07:00
 created_at: 2026-11-26T11:55:00+07:00
 request: >-
   Continue after TASK-059. PBR materials preserve shading but fixed viewer light
