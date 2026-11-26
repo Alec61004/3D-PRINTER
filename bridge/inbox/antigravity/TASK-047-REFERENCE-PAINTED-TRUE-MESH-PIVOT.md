@@ -1,7 +1,9 @@
 ---
 task_id: TASK-047-REFERENCE-PAINTED-TRUE-MESH-PIVOT
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T08:45:35+07:00
 created_at: 2026-11-26T09:15:00+07:00
 request: Pivot away from the stalled v12-v14 PBR/material family. Build a real connected mesh whose actual front render matches the reference using per-surface reference-derived texture/material projection, while forbidding a whole-image plane, billboard, or 2.5D rig.
 result_path: assets/models/raw/deltrol_p2s_explorer_v15.glb
