@@ -1,7 +1,9 @@
 ---
 task_id: TASK-075-CLEAN-SOURCE-UPPER-ASSET-PIVOT
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:26:30+07:00
 created_at: 2026-11-26T11:02:00+07:00
 request: >-
   Abandon the current GLB upper-node editing workflow. Build a clean physical
