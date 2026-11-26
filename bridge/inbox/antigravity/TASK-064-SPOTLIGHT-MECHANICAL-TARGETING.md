@@ -1,7 +1,9 @@
 ---
 task_id: TASK-064-SPOTLIGHT-MECHANICAL-TARGETING
 owner: antigravity
-status: in_progress
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T09:58:30+07:00
 created_at: 2026-11-26T13:15:00+07:00
 request: >-
   Pivot TASK-063's omnidirectional point lights to aimed narrow-cone
