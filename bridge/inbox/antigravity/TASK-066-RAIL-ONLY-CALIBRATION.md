@@ -1,7 +1,9 @@
 ---
 task_id: TASK-066-RAIL-ONLY-CALIBRATION
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:03:25+07:00
 created_at: 2026-11-26T14:10:00+07:00
 request: >-
   Continue from v33, which has 14/15 ROI passes and turbine dMax=14.5. Only the

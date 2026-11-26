@@ -1,7 +1,7 @@
 ---
 task_id: TASK-067-RAIL-PRIMITIVE-IDENTIFICATION-PIVOT
 owner: antigravity
-status: pending
+status: in_progress
 created_at: 2026-11-26T10:12:00+07:00
 request: >-
   Pivot from the failed v34 guessed material-index edit. Starting from the
