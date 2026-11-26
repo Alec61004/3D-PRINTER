@@ -1,7 +1,9 @@
 ---
 task_id: TASK-071-RAIL-SHELL-ENVELOPE-INTEGRATION
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:17:20+07:00
 created_at: 2026-11-26T10:36:00+07:00
 request: >-
   Integrate the successful v38 depth-calibrated rail into the printer shell.
