@@ -1,7 +1,9 @@
 ---
 task_id: TASK-063-TURBINE-SPILL-LIGHT-SEPARATION
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T09:54:00+07:00
 created_at: 2026-11-26T12:55:00+07:00
 request: >-
   Continue from TASK-062. Rail dMax=12.9 and right-window glass dMax=13.5 now
