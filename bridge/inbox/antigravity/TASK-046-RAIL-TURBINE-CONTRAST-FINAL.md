@@ -1,7 +1,9 @@
 ---
 task_id: TASK-046-RAIL-TURBINE-CONTRAST-FINAL
 owner: antigravity
-status: pending
+status: completed
+verdict: REVISION_REQUIRED
+completed_at: 2026-11-26T08:40:45+07:00
 created_at: 2026-11-26T09:00:00+07:00
 request: Final focused correction of the rail/toolhead/turbine material contrast in v13. Keep the accepted shell/framing unchanged and make only the failing interior metal regions match the reference.
 result_path: assets/models/raw/deltrol_p2s_explorer_v14.glb
