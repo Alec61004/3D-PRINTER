@@ -1,7 +1,9 @@
 ---
 task_id: TASK-074-FRESH-UPPER-BODY-SOURCE-REBUILD
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:24:05+07:00
 created_at: 2026-11-26T10:55:00+07:00
 request: >-
   Perform a genuinely fresh source-mesh rebuild of the Deltrol upper body and
