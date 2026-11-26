@@ -1,7 +1,9 @@
 ---
 task_id: TASK-070-DEPTH-CALIBRATED-RAIL-PLACEMENT
 owner: antigravity
-status: pending
+status: completed
+verdict: PIVOT_REQUIRED
+completed_at: 2026-11-26T10:15:15+07:00
 created_at: 2026-11-26T10:30:00+07:00
 request: >-
   Pivot from v37's still-occluded rail. Use the fixed camera ray/depth data to
