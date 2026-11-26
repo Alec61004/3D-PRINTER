@@ -1,7 +1,9 @@
 ---
 task_id: TASK-081-BLENDER-CAD-CONVERSION-RETRY
 owner: antigravity
-status: pending
+status: blocked
+verdict: BLOCKED
+completed_at: 2026-11-26T12:31:35+07:00
 created_at: 2026-11-26T11:52:00+07:00
 request: >-
   Retry TASK-080 now that Blender LTS 4.5.10 is installed at
